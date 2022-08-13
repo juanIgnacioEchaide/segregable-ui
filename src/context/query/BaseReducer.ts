@@ -1,4 +1,4 @@
-import { ActionType } from "../../common/constants/context";
+import { ActionType, dataLoaded } from "../../common/constants/context";
 import { Action, BaseState } from "../../common/models/entities";
 
 const BaseReducer = (state: BaseState, action: Action): BaseState => {
@@ -25,37 +25,25 @@ const BaseReducer = (state: BaseState, action: Action): BaseState => {
             error: false,
             errorMessage: ''
         }
-        case ActionType.UpdatePages: return {
-            ...state,
-            currentPage: action.payload.currentPage,
-            prevPage: action.payload.prevPage,
-            nextPage: action.payload.nextPage
-        }
         case ActionType.UpdatePeople: return {
             ...state,
-            loading: false,
-            error: false,
-            errorMessage: '',
-            people: action.payload.people,
+            ...dataLoaded,
+            people: action.payload.results,
             prevPage: action.payload.previous,
             nextPage: action.payload.nextPage,
             currentPage: action.payload.currentPage,
             nextUri: action.payload.nextUri,
             prevUri: action.payload.prevUri,
-            displayed: { ...state.displayed, people: action.payload.people }
+            displayed: { ...state.displayed, people: action.payload.results }
         }
         case ActionType.UpdatePlanets: return {
             ...state,
-            loading: false,
-            error: false,
-            errorMessage: '',
+            ...dataLoaded,
             planets: action.payload
         }
         case ActionType.UpdateStarships: return {
             ...state,
-            loading: false,
-            error: false,
-            errorMessage: '',
+            ...dataLoaded,
             starship: action.payload
         }
         case ActionType.UpdateDisplayedPeople: return {

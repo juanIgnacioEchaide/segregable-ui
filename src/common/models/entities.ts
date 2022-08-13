@@ -98,11 +98,11 @@ type PagesPayload = {
     prevPage: number
 }
 
-type UpdatePeoplePayload = {
+type UpdatePayload<T> = {
     currentPage: number,
     nextPage: number,
     prevPage: number,
-    people: People[],
+    results: T[],
     nextUri: string | null,
     prevUri: string | null
 }
@@ -118,7 +118,7 @@ export type {
     SwapiResponse, 
     BaseState, 
     Action, 
-    UpdatePeoplePayload, 
+    UpdatePayload, 
     PagesPayload,
     ContextValue 
 }

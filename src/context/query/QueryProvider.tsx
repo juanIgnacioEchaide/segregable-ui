@@ -12,12 +12,11 @@ import { BaseReducer } from "./BaseReducer";
 import {
   ContextValue,
   People,
-  SwapiResponse,
-  UpdatePeoplePayload,
+  UpdatePayload,
 } from "../../common/models/entities";
 import { getAllPeople, getPeopleByPage } from "../../services";
 import { BaseActions } from "./BaseActions";
-import { getPageFromUri, setPeoplePayload } from "../../common/utils/helpers";
+import { setUpdatePayload } from "../../common/utils/helpers";
 import { MESSAGE, ROUTES } from "../../common/constants";
 
 const QueryContext = createContext<ContextValue>(defaultContextValue);
@@ -33,7 +32,7 @@ const QueryProvider = ({ children }: any) => {
         .then((data) =>
           dispatch(
             BaseActions.UpdatePeople(
-              setPeoplePayload(data) as UpdatePeoplePayload
+              setUpdatePayload(data) as UpdatePayload<People>
             )
           )
         )
@@ -46,7 +45,7 @@ const QueryProvider = ({ children }: any) => {
         .then((data) =>
           dispatch(
             BaseActions.UpdatePeople(
-              setPeoplePayload(data) as UpdatePeoplePayload
+              setUpdatePayload(data) as UpdatePayload<People>
             )
           )
         )

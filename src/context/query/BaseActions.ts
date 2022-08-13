@@ -1,6 +1,6 @@
 import { People, Planet, Starship } from "../../common"
 import { ActionType } from "../../common/constants/context"
-import { PagesPayload, UpdatePeoplePayload } from "../../common/models/entities"
+import { PagesPayload, UpdatePayload } from "../../common/models/entities"
 
 const BaseActions = {
     SetLoading: (payload: boolean) => ({
@@ -27,7 +27,7 @@ const BaseActions = {
         type: ActionType.UpdatePages,
         payload
     }),
-    UpdatePeople: (payload: UpdatePeoplePayload) => ({
+    UpdatePeople: (payload: UpdatePayload<People>) => ({
         type: ActionType.UpdatePeople,
         payload
     }),

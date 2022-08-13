@@ -1,5 +1,5 @@
 import { INITIAL_PAGE } from "../constants/context";
-import { SwapiResponse, UpdatePeoplePayload } from "../models/entities";
+import { SwapiResponse, UpdatePayload } from "../models/entities";
 
 const getPageFromUri = (uri: string | null): number => {
     let pageNum = Number(uri?.split('page=')[1])
@@ -10,14 +10,14 @@ const getPageFromUri = (uri: string | null): number => {
     }
 }
 
-const setPeoplePayload = (data: SwapiResponse<any>): UpdatePeoplePayload => {
+const setUpdatePayload = (data: SwapiResponse<any>): UpdatePayload<any> => {
     return {
         currentPage: getPageFromUri(data?.next) - 1,
         nextPage: getPageFromUri(data?.next),
         prevPage: getPageFromUri(data?.previous),
-        people: data?.results,
+        results: data?.results,
         nextUri: data?.next,
         prevUri: data?.previous,
-    }
+    } as unknown as UpdatePayload<any>
 }
-export { getPageFromUri, setPeoplePayload }
+export { getPageFromUri, setUpdatePayload }
