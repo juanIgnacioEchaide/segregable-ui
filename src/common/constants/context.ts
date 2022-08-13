@@ -51,16 +51,9 @@ const defaultContextValue = {
 
 const INITIAL_PAGE = 1
 
-const dataLoaded = {
-    loading: false,
-    error: false,
-    errorMessage: '',
-}
-
 export {
     defaultState,
     defaultContextValue,
-    dataLoaded,
     INITIAL_PAGE,
     StateEntity,
     ActionType
