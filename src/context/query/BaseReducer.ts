@@ -1,7 +1,9 @@
-import { ActionType, dataLoaded } from "../../common/constants/context";
+import { ActionType, StateEntity } from "../../common/constants/context";
 import { Action, BaseState } from "../../common/models/entities";
+import { updateAfterLoad, updateDisplayed } from "../../common/utils/helpers";
 
 const BaseReducer = (state: BaseState, action: Action): BaseState => {
+
     switch (action.type) {
         case ActionType.SetLoading: return {
             ...state,
@@ -26,46 +28,22 @@ const BaseReducer = (state: BaseState, action: Action): BaseState => {
             errorMessage: ''
         }
         case ActionType.UpdatePeople: return {
-            ...state,
-            ...dataLoaded,
-            people: action.payload.results,
-            prevPage: action.payload.previous,
-            nextPage: action.payload.nextPage,
-            currentPage: action.payload.currentPage,
-            nextUri: action.payload.nextUri,
-            prevUri: action.payload.prevUri,
-            displayed: { ...state.displayed, people: action.payload.results }
+            ...updateAfterLoad(StateEntity.People, action.payload, state)
         }
         case ActionType.UpdatePlanets: return {
-            ...state,
-            ...dataLoaded,
-            planets: action.payload
+            ...updateAfterLoad(StateEntity.Planets, action.payload, state)
         }
         case ActionType.UpdateStarships: return {
-            ...state,
-            ...dataLoaded,
-            starship: action.payload
+            ...updateAfterLoad(StateEntity.Starship, action.payload, state)
         }
         case ActionType.UpdateDisplayedPeople: return {
-            ...state,
-            displayed: {
-                ...state.displayed,
-                people: action.payload
-            }
+            ...updateDisplayed(StateEntity.People, action.payload, state)
         }
         case ActionType.UpdateDisplayedPlanets: return {
-            ...state,
-            displayed: {
-                ...state.displayed,
-                planets: action.payload
-            }
+            ...updateDisplayed(StateEntity.Planets, action.payload, state)
         }
         case ActionType.UpdateDisplayedStarships: return {
-            ...state,
-            displayed: {
-                ...state.displayed,
-                starship: action.payload
-            }
+            ...updateDisplayed(StateEntity.Starship, action.payload, state)
         }
         default: return state
     }
