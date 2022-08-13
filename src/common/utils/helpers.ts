@@ -1,5 +1,5 @@
 import { INITIAL_PAGE, StateEntity } from "../constants/context";
-import { Action, BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
+import { BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
 
 const getPageFromUri = (uri: string | null): number => {
     let pageNum = Number(uri?.split('page=')[1])
