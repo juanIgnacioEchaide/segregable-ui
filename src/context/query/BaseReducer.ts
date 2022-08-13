@@ -40,7 +40,8 @@ const BaseReducer = (state: BaseState, action: Action): BaseState => {
             prevPage: action.payload.previous,
             nextPage: action.payload.nextPage,
             currentPage: action.payload.currentPage,
-            nextUri: action.payload.next,
+            nextUri: action.payload.nextUri,
+            prevUri: action.payload.prevUri,
             displayed: { ...state.displayed, people: action.payload.people }
         }
         case ActionType.UpdatePlanets: return {
