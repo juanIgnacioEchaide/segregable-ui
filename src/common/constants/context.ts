@@ -16,6 +16,12 @@ enum ActionType {
     UpdateDisplayedStarships = "UpdateDisplayedStarships",
 }
 
+enum StateEntity {
+    People = 'people',
+    Planets = 'planets',
+    Starship = 'starship',
+}
+
 const defaultState: BaseState = {
     loading: false,
     error: false,
@@ -50,10 +56,12 @@ const dataLoaded = {
     error: false,
     errorMessage: '',
 }
+
 export {
     defaultState,
     defaultContextValue,
     dataLoaded,
     INITIAL_PAGE,
+    StateEntity,
     ActionType
 }
