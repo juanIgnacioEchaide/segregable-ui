@@ -19,7 +19,7 @@ const api = {
         },
     },
     planets: {
-        getAll: (): Promise<AxiosResponse<Planet[]>> => {
+        getAll: (): Promise<AxiosResponse<any>> => {
             const data = apiClient.get(`swapi/`);
             return data
         },
