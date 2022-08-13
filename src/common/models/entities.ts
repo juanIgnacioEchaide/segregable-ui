@@ -98,6 +98,14 @@ type PagesPayload = {
     prevPage: number
 }
 
+type UpdatePeoplePayload = {
+    currentPage: number,
+    nextPage: number,
+    prevPage: number,
+    people: People[],
+    nextUri: string | null,
+    prevUri: string | null
+}
 type ContextValue = {
     state: BaseState,
     dispatch: React.Dispatch<Action>
@@ -110,6 +118,7 @@ export type {
     SwapiResponse, 
     BaseState, 
     Action, 
-    PagesPayload, 
+    UpdatePeoplePayload, 
+    PagesPayload,
     ContextValue 
 }

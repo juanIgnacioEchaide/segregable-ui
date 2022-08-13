@@ -1,10 +1,23 @@
 import { INITIAL_PAGE } from "../constants/context";
+import { SwapiResponse, UpdatePeoplePayload } from "../models/entities";
 
 const getPageFromUri = (uri: string | null): number => {
-    let pageNum = Number(uri?.split('=')[1])
-/*     if (pageNum === 0 || pageNum === null)
-        return INITIAL_PAGE */
-    return pageNum
+    let pageNum = Number(uri?.split('page=')[1])
+    if (!uri || !pageNum) {
+        return INITIAL_PAGE
+    } else {
+        return pageNum
+    }
 }
 
-export { getPageFromUri }
+const setPeoplePayload = (data: SwapiResponse<any>): UpdatePeoplePayload => {
+    return {
+        currentPage: getPageFromUri(data?.next) - 1,
+        nextPage: getPageFromUri(data?.next),
+        prevPage: getPageFromUri(data?.previous),
+        people: data?.results,
+        nextUri: data?.next,
+        prevUri: data?.previous,
+    }
+}
+export { getPageFromUri, setPeoplePayload }
