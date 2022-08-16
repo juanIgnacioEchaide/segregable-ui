@@ -9,14 +9,6 @@ const BaseReducer = (state: BaseState, action: Action): BaseState => {
             ...state,
             loading: action.payload
         }
-        case ActionType.SetNextUri: return {
-            ...state,
-            nextUri: action.payload
-        }
-        case ActionType.SetPrevUri: return {
-            ...state,
-            prevUri: action.payload
-        }
         case ActionType.SetError: return {
             ...state,
             error: true,

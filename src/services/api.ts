@@ -19,18 +19,26 @@ const api = {
         },
     },
     planets: {
-        getAll: (): Promise<AxiosResponse<any>> => {
-            const data = apiClient.get(`swapi/`);
+        getAll: (): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(URI.PLANET);
             return data
         },
         getById: (id: string | number): Promise<AxiosResponse<Planet>> => {
-            const data = apiClient.get(`swapi/${id}`);
+            const data = apiClient.get(`${URI.PLANET}/${id}`);
+            return data
+        },
+        getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(`${URI.PLANET}/?${page}`);
             return data
         },
     },
     starship: {
-        getAll: (): Promise<AxiosResponse<Starship[]>> => {
-            const data = apiClient.get(`swapi/`);
+        getAll: (): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(URI.STARSHIP);
+            return data
+        },
+        getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(`${URI.STARSHIP}/?${page}`);
             return data
         },
         getById: (id: string | number): Promise<AxiosResponse<Starship>> => {

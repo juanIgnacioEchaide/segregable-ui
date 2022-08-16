@@ -1,18 +1,10 @@
 import { People, Planet, Starship } from "../../common"
 import { ActionType } from "../../common/constants/context"
-import { PagesPayload, UpdatePayload } from "../../common/models/entities"
+import { UpdatePayload } from "../../common/models/entities"
 
 const BaseActions = {
     SetLoading: (payload: boolean) => ({
         type: ActionType.SetLoading,
-        payload
-    }),
-    SetPrevUri: (payload: string | null) => ({
-        type: ActionType.SetPrevUri,
-        payload
-    }),
-    SetNextUri: (payload: string | null) => ({
-        type: ActionType.SetNextUri,
         payload
     }),
     SetError: (payload: string) => ({
@@ -23,19 +15,15 @@ const BaseActions = {
         type: ActionType.ClearError,
         payload
     }),
-    UpdatePages: (payload: PagesPayload) => ({
-        type: ActionType.UpdatePages,
-        payload
-    }),
     UpdatePeople: (payload: UpdatePayload<People>) => ({
         type: ActionType.UpdatePeople,
         payload
     }),
-    UpdatePlanets: (payload: Planet[]) => ({
+    UpdatePlanets: (payload: UpdatePayload<Planet>) => ({
         type: ActionType.UpdatePlanets,
         payload
     }),
-    UpdateStarships: (payload: Starship[]) => ({
+    UpdateStarships: (payload: UpdatePayload<Starship>) => ({
         type: ActionType.UpdatePlanets,
         payload
     }),
