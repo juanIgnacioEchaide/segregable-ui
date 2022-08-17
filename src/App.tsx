@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
+import { AppRouter } from "./AppRouter";
 import { QueryProvider } from "./context/query/QueryProvider";
-import { Search } from "./modules";
 
 function App() {
   return (
     <QueryProvider>
-      <Search />
+      <AppRouter />
     </QueryProvider>
   );
 }

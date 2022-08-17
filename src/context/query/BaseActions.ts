@@ -16,6 +16,9 @@ const BaseActions = {
         type: ActionType.SetError,
         payload
     }),
+    ClearError: () => ({
+        type: ActionType.ClearError
+    }),
     SetErrorMessage: (payload: string) => ({
         type: ActionType.ClearError,
         payload

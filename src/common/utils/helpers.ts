@@ -1,5 +1,7 @@
+import { BaseActions } from "../../context/query/BaseActions";
 import { ROUTES } from "../constants";
 import { INITIAL_PAGE, StateEntity, ViewByLocation } from "../constants/context";
+import { VIEW } from "../constants/uri";
 import { BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
 
 const getPageFromUri = (uri: string | null): number => {
@@ -9,6 +11,10 @@ const getPageFromUri = (uri: string | null): number => {
     } else {
         return pageNum
     }
+}
+
+const getLocationPath = (): VIEW => {
+    return window?.location.pathname.split("/")[1] as VIEW
 }
 
 const setUpdatePayload = (data: SwapiResponse<any>): UpdatePayload<any> => {
@@ -51,17 +57,15 @@ const updateDisplayed = (entity: StateEntity, payload: any, state: BaseState) =>
     } as BaseState
 }
 
-
-const getViewByLocation = (route: ROUTES) => {
-    if (route) {
-        return ViewByLocation[route]
-    }
+const validView = (view: VIEW) => {
+    return view !== undefined && view !== VIEW.DEFAULT
 }
 
 export {
     getPageFromUri,
+    getLocationPath,
     setUpdatePayload,
     updateAfterLoad,
     updateDisplayed,
-    getViewByLocation
+    validView
 }

@@ -19,6 +19,10 @@ const BaseReducer = (state: BaseState, action: Action): BaseState => {
             error: false,
             errorMessage: ''
         }
+        case ActionType.SetView: return {
+            ...state,
+            view: action.payload
+        }
         case ActionType.UpdatePeople: return {
             ...updateAfterLoad(StateEntity.People, action.payload, state)
         }
