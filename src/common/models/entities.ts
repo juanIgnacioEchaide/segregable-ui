@@ -62,7 +62,7 @@ type SwapiResponse<T> = {
     count: number,
     next: string | null,
     previous: string | null,
-    results?: T
+    results?: T[]
 }
 
 type BaseState = {
@@ -115,7 +115,7 @@ type ViewStateLogic = {
     allQuery: () => Promise<SwapiResponse<any>>;
     byPageQuery: (
         page: number
-    ) => Promise<SwapiResponse<People[] | Planet[] | Starship[]>>;
+    ) => Promise<SwapiResponse<People | Planet| Starship>>;
     updateFn: (data: UpdatePayload<People | any>) => void;
 }
 

@@ -9,7 +9,7 @@ const api = {
             const data = apiClient.get(URI.PEOPLE);
             return data
         },
-        getByPage: (page: number): Promise<AxiosResponse<SwapiResponse<People[]>>> => {
+        getByPage: (page: number): Promise<AxiosResponse<SwapiResponse<People>>> => {
             const data = apiClient.get(`${URI.PEOPLE}/?${page}`);
             return data
         },
