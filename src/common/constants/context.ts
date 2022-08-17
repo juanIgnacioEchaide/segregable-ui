@@ -60,6 +60,7 @@ const ViewByLocation: Record<ROUTES, VIEW> = {
 }
 const INITIAL_PAGE = 1
 
+
 export {
     defaultState,
     defaultContextValue,

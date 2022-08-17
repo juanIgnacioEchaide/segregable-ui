@@ -14,6 +14,7 @@ import { QueryContext } from "./context/query/QueryProvider";
 const AppRouter = () => {
   const location = useLocation();
   const { dispatch } = useContext(QueryContext);
+  
   const RoutesStack = [
     { path: ROUTES.HOME, element: <p>home</p> },
     { path: ROUTES.PEOPLE, element: <p>home</p> },
