@@ -14,7 +14,9 @@ import {
   People,
   Planet,
   Starship,
+  SwapiResponse,
   UpdatePayload,
+  ViewQueries,
 } from "../../common/models/entities";
 import {
   getAllPeople,
@@ -25,8 +27,9 @@ import {
 } from "../../services";
 import { BaseActions } from "./BaseActions";
 import { setUpdatePayload } from "../../common/utils/helpers";
-import { MESSAGE, ROUTES } from "../../common/constants";
+import { MESSAGE } from "../../common/constants";
 import { getPlanetsByPage } from "../../services/planet";
+import { VIEW } from "../../common/constants/uri";
 
 const QueryContext = createContext<ContextValue>(defaultContextValue);
 
@@ -34,111 +37,83 @@ const QueryProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(BaseReducer, defaultState);
   const value = { state, dispatch };
 
-//////////// fetch people data
-  const getPeopleByParams = useCallback(() => {
-    dispatch(BaseActions.SetLoading(true));
-    if (state?.view === ROUTES.PEOPLE && state?.pageParam === 0) {
-      return getAllPeople()
-        .then((data) =>
-          dispatch(
-            BaseActions.UpdatePeople(
-              setUpdatePayload(data) as UpdatePayload<People>
-            )
-          )
-        )
-        .catch((err: any) => {
-          //set error to be displayed at UI
-          dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
-        });
-    } else {
-      return getPeopleByPage(state?.pageParam)
-        .then((data) =>
-          dispatch(
-            BaseActions.UpdatePeople(
-              setUpdatePayload(data) as UpdatePayload<People>
-            )
-          )
-        )
-        .catch((err: any) => {
-          //set error to be displayed at UI
-          dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
-        });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.view, state?.pageParam]);
+  const matchQueryByView: ViewQueries = {
+    [VIEW.PEOPLE]: {
+      allQuery: () => {
+        console.log('getAllPeople')
+        return getAllPeople();
+      },
+      byPageQuery: (page: number) => {
+        return getPeopleByPage(page);
+      },
+      updateFn: (data: UpdatePayload<People>) => {
+        dispatch(BaseActions.UpdatePeople(data));
+      },
+    },
+    [VIEW.PLANETS]: {
+      allQuery: () => {
+        console.log('getAllPlanets')
+        return getAllPlanets();
+      },
+      byPageQuery: (page: number) => {
+        return getPlanetsByPage(page);
+      },
+      updateFn: (data: UpdatePayload<Planet>) => {
+        dispatch(BaseActions.UpdatePlanets(data));
+      },
+    },
+    [VIEW.STARSHIP]: {
+      allQuery: () => {
+        return getAllStarships();
+      },
+      byPageQuery: (page: number) => {
+        return getStarshipsByPage(page);
+      },
+      updateFn: (data: UpdatePayload<Starship>) => {
+        dispatch(BaseActions.UpdateStarships(data));
+      },
+    },
+  };
 
-//////////// fetch planets data
-  const getPlanetsByParams = useCallback(() => {
-    dispatch(BaseActions.SetLoading(true));
-    if (state?.view === ROUTES.PLANETS && state?.pageParam === 0) {
-      return getAllPlanets()
-        .then((data) =>
-          dispatch(
-            BaseActions.UpdatePlanets(
-              setUpdatePayload(data) as UpdatePayload<Planet>
-            )
-          )
-        )
-        .catch((err: any) => {
-          //set error to be displayed at UI
-          dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
-        });
-    } else {
-      return getPlanetsByPage(state?.pageParam)
-        .then((data) =>
-          dispatch(
-            BaseActions.UpdatePlanets(
-              setUpdatePayload(data) as UpdatePayload<Planet>
-            )
-          )
-        )
-        .catch((err: any) => {
-          //set error to be displayed at UI
-          dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
-        });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.view, state?.pageParam]);
+  const allQuery = (viewScene: VIEW) => {
+    return matchQueryByView[viewScene].allQuery();
+  };
 
-//////////// fetch starships data
-  const getStarshipByParams = useCallback(() => {
-    dispatch(BaseActions.SetLoading(true));
-    if (state?.view === ROUTES.STARSHIP && state?.pageParam === 0) {
-      return getAllStarships()
-        .then((data) =>
-          dispatch(
-            BaseActions.UpdateStarships(
-              setUpdatePayload(data) as UpdatePayload<Starship>
-            )
-          )
-        )
-        .catch((err: any) => {
-          //set error to be displayed at UI
-          dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
-        });
+  const byPageQuery = (viewScene: VIEW, page: number) => {
+    return matchQueryByView[viewScene]?.byPageQuery(page);
+  };
+
+  const updateDispatch = (
+    viewScene: VIEW,
+    data: UpdatePayload<People | Planet | Starship>
+  ) => {
+    return matchQueryByView[viewScene]?.updateFn(data);
+  };
+
+  const displayGenericError = () => {
+    return dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
+  };
+
+  const fetchByPageParam = useCallback((view: VIEW, pageParam: number) => {
+    if (pageParam) {
+      allQuery(view)
+        .then((data: SwapiResponse<People | Planet | Starship>) => {
+          return updateDispatch(view, setUpdatePayload(data));
+        })
+        .catch((err) => displayGenericError());
     } else {
-      return getStarshipsByPage(state?.pageParam)
-        .then((data) =>
-          dispatch(
-            BaseActions.UpdateStarships(
-              setUpdatePayload(data) as UpdatePayload<Starship>
-            )
-          )
-        )
-        .catch((err: any) => {
-          //set error to be displayed at UI
-          dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
-        });
+      byPageQuery(view, pageParam)
+        .then((data: any) => {
+          return updateDispatch(view, setUpdatePayload(data));
+        })
+        .catch((err) => displayGenericError());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.view, state?.pageParam]);
 
   useEffect(() => {
-    getPeopleByParams();
-    getPlanetsByParams();
-    getStarshipByParams();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    fetchByPageParam(state?.view, state?.pageParam);
+  }, [fetchByPageParam, state?.pageParam, state?.view]);
 
   return (
     <QueryContext.Provider value={value}>{children}</QueryContext.Provider>

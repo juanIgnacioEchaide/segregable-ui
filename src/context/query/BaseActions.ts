@@ -1,10 +1,15 @@
 import { People, Planet, Starship } from "../../common"
 import { ActionType } from "../../common/constants/context"
+import { VIEW } from "../../common/constants/uri"
 import { UpdatePayload } from "../../common/models/entities"
 
 const BaseActions = {
     SetLoading: (payload: boolean) => ({
         type: ActionType.SetLoading,
+        payload
+    }),
+    SetView: (payload: VIEW) => ({
+        type: ActionType.SetView,
         payload
     }),
     SetError: (payload: string) => ({

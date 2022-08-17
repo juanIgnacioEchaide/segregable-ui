@@ -14,4 +14,11 @@ enum ROUTES {
     STARSHIP = "/people"
 }
 
-export { URI, ROUTES }
+enum VIEW {
+    DEFAULT = "",
+    PEOPLE = "people",
+    PLANETS = "planets",
+    STARSHIP = "starship"
+}
+
+export { URI, ROUTES, VIEW }

@@ -1,5 +1,5 @@
 import React from "react"
-import { ROUTES } from "../constants"
+import { VIEW } from "../constants/uri"
 
 type People = {
     name: string
@@ -74,7 +74,7 @@ type BaseState = {
     prevPage: number,
     nextUri: string,
     prevUri: string,
-    view: ROUTES,
+    view: VIEW,
     pageParam: number,
     idParam: number | string,
     people: People[]
@@ -111,14 +111,26 @@ type ContextValue = {
     dispatch: React.Dispatch<Action>
 }
 
-export type { 
-    People, 
-    Planet, 
-    Starship, 
-    SwapiResponse, 
-    BaseState, 
-    Action, 
-    UpdatePayload, 
+type ViewStateLogic = {
+    allQuery: () => Promise<SwapiResponse<any>>;
+    byPageQuery: (
+        page: number
+    ) => Promise<SwapiResponse<People[] | Planet[] | Starship[]>>;
+    updateFn: (data: UpdatePayload<People | any>) => void;
+}
+
+type ViewQueries = Record<VIEW | any, ViewStateLogic>
+
+export type {
+    People,
+    Planet,
+    Starship,
+    SwapiResponse,
+    BaseState,
+    Action,
+    UpdatePayload,
     PagesPayload,
-    ContextValue 
+    ContextValue,
+    ViewStateLogic,
+    ViewQueries
 }

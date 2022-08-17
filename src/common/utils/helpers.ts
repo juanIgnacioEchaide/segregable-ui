@@ -1,4 +1,5 @@
-import { INITIAL_PAGE, StateEntity } from "../constants/context";
+import { ROUTES } from "../constants";
+import { INITIAL_PAGE, StateEntity, ViewByLocation } from "../constants/context";
 import { BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
 
 const getPageFromUri = (uri: string | null): number => {
@@ -50,4 +51,17 @@ const updateDisplayed = (entity: StateEntity, payload: any, state: BaseState) =>
     } as BaseState
 }
 
-export { getPageFromUri, setUpdatePayload, updateAfterLoad, updateDisplayed }
+
+const getViewByLocation = (route: ROUTES) => {
+    if (route) {
+        return ViewByLocation[route]
+    }
+}
+
+export {
+    getPageFromUri,
+    setUpdatePayload,
+    updateAfterLoad,
+    updateDisplayed,
+    getViewByLocation
+}

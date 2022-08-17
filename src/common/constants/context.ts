@@ -1,9 +1,10 @@
 import { BaseState } from "../models/entities";
-import { ROUTES } from "./uri";
+import { ROUTES, VIEW } from "./uri";
 
 enum ActionType {
     SetLoading = "setLoading",
     SetError = "SetError",
+    SetView = "SetView",
     SetPrevUri = "SetPrevUri",
     SetNextUri = "SetNextUri",
     ClearError = "ClearError",
@@ -31,7 +32,7 @@ const defaultState: BaseState = {
     prevPage: 0,
     nextUri: '',
     prevUri: '',
-    view: ROUTES.DEFAULT,
+    view: VIEW.DEFAULT,
     pageParam: 0,
     idParam: 0,
     people: [],
@@ -49,12 +50,21 @@ const defaultContextValue = {
     dispatch: () => { }
 }
 
+const ViewByLocation: Record<ROUTES, VIEW> = {
+    [ROUTES.DEFAULT]: VIEW.DEFAULT,
+    [ROUTES.BASE]: VIEW.DEFAULT,
+    [ROUTES.HOME]: VIEW.DEFAULT,
+    [ROUTES.PEOPLE]: VIEW.PEOPLE,
+    [ROUTES.PLANETS]: VIEW.PLANETS,
+    [ROUTES.STARSHIP]: VIEW.STARSHIP,
+}
 const INITIAL_PAGE = 1
 
 export {
     defaultState,
     defaultContextValue,
     INITIAL_PAGE,
+    ViewByLocation,
     StateEntity,
     ActionType
 }
