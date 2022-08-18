@@ -37,7 +37,7 @@ const QueryProvider = ({ children }: any) => {
     setView,
   } = UseQueryByView();
 
-  const fetchDataByPage = () => {
+  const fetchDataByPage = useCallback(() => {
     if (state?.view) {
       if (state?.pageParam === 0) {
         allQuery(state?.view)
@@ -54,7 +54,8 @@ const QueryProvider = ({ children }: any) => {
           .catch((err) => dispatch(displayGenericError()));
       }
     }
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.view, state?.pageParam]);
 
   useEffect(() => {
     if (viewPath) dispatch(setView(viewPath));

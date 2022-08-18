@@ -32,7 +32,7 @@ const BaseActions = {
         payload
     }),
     UpdateStarships: (payload: UpdatePayload<Starship>) => ({
-        type: ActionType.UpdatePlanets,
+        type: ActionType.UpdateStarships,
         payload
     }),
     UpdateDisplayedPeople: (payload: People[]) => ({
