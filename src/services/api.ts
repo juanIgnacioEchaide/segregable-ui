@@ -41,7 +41,7 @@ const api = {
             const data = apiClient.get(`${URI.STARSHIP}/?page=${page}`);
             return data
         },
-        getById: (id: string | number): Promise<AxiosResponse<Starship>> => {
+        getById: (id: string | number): Promise<AxiosResponse<SwapiResponse<Starship>>> => {
             const data = apiClient.get(`${URI.STARSHIP}/${id}`);
             return data
         },
@@ -55,11 +55,39 @@ const api = {
             const data = apiClient.get(`${URI.FILMS}/?page=${page}`);
             return data
         },
-        getById: (id: string | number): Promise<AxiosResponse<any>> => {
+        getById: (id: string | number): Promise<AxiosResponse<SwapiResponse<Starship>>> => {
             const data = apiClient.get(`${URI.FILMS}/${id}`);
             return data
         },
-    }
+    },
+    species: {
+        getAll: (): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(URI.SPECIES);
+            return data
+        },
+        getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(`${URI.SPECIES}/?page=${page}`);
+            return data
+        },
+        getById: (id: string | number): Promise<AxiosResponse<any>> => {
+            const data = apiClient.get(`${URI.SPECIES}/${id}`);
+            return data
+        },
+    },
+    vehicles: {
+        getAll: (): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(URI.VEHICLES);
+            return data
+        },
+        getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(`${URI.VEHICLES}/?page=${page}`);
+            return data
+        },
+        getById: (id: string | number): Promise<AxiosResponse<any>> => {
+            const data = apiClient.get(`${URI.VEHICLES}/${id}`);
+            return data
+        },
+    },
 }
 
 export { api }

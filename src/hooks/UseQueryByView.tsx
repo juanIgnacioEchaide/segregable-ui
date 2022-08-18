@@ -11,9 +11,15 @@ import {
   getPlanetsByPage,
   getAllStarships,
   getStarshipsByPage,
+  getStarshipsById,
   getPeopleById,
+  getAllFilms,
+  getFilmsByPage,
+  getFilmsById,
+  getAllVehicles,
+  getVehiclesByPage,
+  getVehiclesById,
 } from "../services";
-
 
 const UseQueryByView = () => {
   const queryByView: ViewQueries = {
@@ -52,8 +58,36 @@ const UseQueryByView = () => {
       byPageQuery: (page: number) => {
         return getStarshipsByPage(page);
       },
-        byIdQuery: (page: number) => {
-        return getPeopleByPage(page);
+      byIdQuery: (id: number) => {
+        return getStarshipsById(id);
+      },
+      updateFn: (data: UpdatePayload<Starship>): Action => {
+        return BaseActions.UpdateStarships(data) as Action;
+      },
+    },
+    [VIEW.FILMS]: {
+      allQuery: () => {
+        return getAllFilms();
+      },
+      byPageQuery: (page: number) => {
+        return getFilmsByPage(page);
+      },
+      byIdQuery: (id: number) => {
+        return getFilmsById(id);
+      },
+      updateFn: (data: UpdatePayload<Starship>): Action => {
+        return BaseActions.UpdateStarships(data) as Action;
+      },
+    },
+    [VIEW.VEHICLES]: {
+      allQuery: () => {
+        return getAllVehicles();
+      },
+      byPageQuery: (page: number) => {
+        return getVehiclesByPage(page);
+      },
+      byIdQuery: (id: number) => {
+        return getVehiclesById(id);
       },
       updateFn: (data: UpdatePayload<Starship>): Action => {
         return BaseActions.UpdateStarships(data) as Action;

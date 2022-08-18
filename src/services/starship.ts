@@ -1,9 +1,5 @@
 import { api } from "./api"
 
-const getStarshipById = (id: string | number) => {
-    return api.starship.getById(id)
-}
-
 const getAllStarships = async () => {
     const { data } = await api.starship.getAll()
     return data
@@ -14,4 +10,9 @@ const getStarshipsByPage = async (page: string | number) => {
     return data
 }
 
-export { getStarshipById, getAllStarships, getStarshipsByPage }
+const getStarshipsById = async (id: number) => {
+    const { data } = await api.starship.getById(id)
+    return data
+}
+
+export { getStarshipsById, getAllStarships, getStarshipsByPage }
