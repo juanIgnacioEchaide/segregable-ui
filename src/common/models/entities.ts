@@ -1,4 +1,5 @@
 import React from "react"
+import { ActionType } from "../constants"
 import { VIEW } from "../constants/uri"
 
 type People = {
@@ -88,7 +89,7 @@ type BaseState = {
 }
 
 type Action = {
-    type: string,
+    type: ActionType,
     payload: any
 }
 
@@ -116,7 +117,7 @@ type ViewStateLogic = {
     byPageQuery: (
         page: number
     ) => Promise<SwapiResponse<People | Planet| Starship>>;
-    updateFn: (data: UpdatePayload<People | any>) => void;
+    updateFn: (data: UpdatePayload<People | any>) => Action;
 }
 
 type ViewQueries = Record<VIEW | any, ViewStateLogic>

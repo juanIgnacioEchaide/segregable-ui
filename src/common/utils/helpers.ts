@@ -57,9 +57,6 @@ const updateDisplayed = (entity: StateEntity, payload: any, state: BaseState) =>
     } as BaseState
 }
 
-const validView = (view: VIEW) => {
-    return view !== undefined && view !== VIEW.DEFAULT
-}
 
 export {
     getPageFromUri,
@@ -67,5 +64,4 @@ export {
     setUpdatePayload,
     updateAfterLoad,
     updateDisplayed,
-    validView
 }

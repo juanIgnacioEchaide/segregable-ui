@@ -16,14 +16,17 @@ import {
   Starship,
   SwapiResponse,
 } from "../../common/models/entities";
-import { setUpdatePayload } from "../../common/utils/helpers";
-import { VIEW } from "../../common/constants/uri";
+import {
+  getLocationPath,
+  setUpdatePayload,
+} from "../../common/utils/helpers";
 import { UseQueryByView } from "../../hooks/UseQueryByView";
 
 const QueryContext = createContext<ContextValue>(defaultContextValue);
 
 const QueryProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(BaseReducer, defaultState);
+  const viewPath = getLocationPath();
   const value = { state, dispatch };
 
   const {
@@ -31,29 +34,37 @@ const QueryProvider = ({ children }: any) => {
     byPageQuery,
     updateDispatch,
     displayGenericError,
+    setView,
   } = UseQueryByView();
 
-  
-  const fetchDataByPage = useCallback((view: VIEW, pageParam: number) => {
-    if (pageParam !== 0) {
-      allQuery(view)
-        .then((data: SwapiResponse<People | Planet | Starship>) => {
-          return updateDispatch(view, setUpdatePayload(data));
-        })
-        .catch((err) => displayGenericError());
-    } else {
-      byPageQuery(view, pageParam)
-        .then((data: SwapiResponse<People | Planet | Starship>) => {
-          return updateDispatch(view, setUpdatePayload(data));
-        })
-        .catch((err) => displayGenericError());
+  const fetchDataByPage = () => {
+    if (state?.view) {
+      if (state?.pageParam === 0) {
+        allQuery(state?.view)
+          .then((data: SwapiResponse<People | Planet | Starship>) => {
+            const payload = setUpdatePayload(data);
+            return dispatch(updateDispatch(state?.view, payload));
+          })
+          .catch((err) => dispatch(displayGenericError()));
+      } else {
+        byPageQuery(state?.view, state?.pageParam)
+          .then((data: SwapiResponse<People | Planet | Starship>) => {
+            return updateDispatch(state?.view, setUpdatePayload(data));
+          })
+          .catch((err) => dispatch(displayGenericError()));
+      }
     }
-  },[allQuery, byPageQuery, displayGenericError, updateDispatch]);
+  };
 
   useEffect(() => {
-    fetchDataByPage(state?.view, state?.pageParam);
+    if (viewPath) dispatch(setView(viewPath));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.pageParam, state?.view]);
+  }, [viewPath]);
+
+  useEffect(() => {
+    fetchDataByPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.view, state?.pageParam]);
 
   return (
     <QueryContext.Provider value={value}>{children}</QueryContext.Provider>

@@ -1,6 +1,6 @@
 import { People, Planet, Starship } from "../common";
 import { MESSAGE } from "../common/constants";
-import { VIEW } from "../common/constants/uri";
+import { ROUTES, VIEW } from "../common/constants/uri";
 import { ViewQueries, UpdatePayload, Action } from "../common/models/entities";
 import { BaseActions } from "../context/query/BaseActions";
 import {
@@ -22,10 +22,9 @@ const UseQueryByView = () => {
       byPageQuery: (page: number) => {
         return getPeopleByPage(page);
       },
-      updateFn:
-        (data: UpdatePayload<People>) => (dispatch: React.Dispatch<Action>) => {
-          dispatch(BaseActions.UpdatePeople(data));
-        },
+      updateFn: (data: UpdatePayload<People>): Action => {
+        return BaseActions.UpdatePeople(data) as Action;
+      },
     },
     [VIEW.PLANETS]: {
       allQuery: () => {
@@ -35,10 +34,9 @@ const UseQueryByView = () => {
       byPageQuery: (page: number) => {
         return getPlanetsByPage(page);
       },
-      updateFn:
-        (data: UpdatePayload<Planet>) => (dispatch: React.Dispatch<Action>) => {
-          dispatch(BaseActions.UpdatePlanets(data));
-        },
+      updateFn: (data: UpdatePayload<Planet>): Action => {
+        return BaseActions.UpdatePlanets(data) as Action;
+      },
     },
     [VIEW.STARSHIP]: {
       allQuery: () => {
@@ -47,31 +45,38 @@ const UseQueryByView = () => {
       byPageQuery: (page: number) => {
         return getStarshipsByPage(page);
       },
-      updateFn:
-        (data: UpdatePayload<Starship>) =>
-        (dispatch: React.Dispatch<Action>) => {
-          dispatch(BaseActions.UpdateStarships(data));
-        },
+      updateFn: (data: UpdatePayload<Starship>): Action => {
+        return BaseActions.UpdateStarships(data) as Action;
+      },
     },
   };
 
   const allQuery = (viewScene: VIEW) => {
-    return queryByView[viewScene].allQuery();
+    return queryByView[viewScene]?.allQuery();
   };
 
   const byPageQuery = (viewScene: VIEW, page: number) => {
     return queryByView[viewScene]?.byPageQuery(page);
   };
 
+  // TO BE DISPATCHED
   const updateDispatch = (
     viewScene: VIEW,
     data: UpdatePayload<People | Planet | Starship>
   ) => {
-    return queryByView[viewScene]?.updateFn(data);
+    return queryByView[viewScene]?.updateFn(data) as Action;
   };
 
-  const displayGenericError = () => (dispatch: React.Dispatch<Action>) => {
-    return dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
+  const displayGenericError = () => {
+    return BaseActions.SetError(MESSAGE.GENERIC_API_ERROR);
+  };
+
+  const clearError = () => {
+    return BaseActions.ClearError();
+  };
+
+  const setView = (view: VIEW) => {
+    return BaseActions.SetView(view);
   };
 
   return {
@@ -79,7 +84,9 @@ const UseQueryByView = () => {
     allQuery,
     byPageQuery,
     updateDispatch,
-    displayGenericError
+    displayGenericError,
+    clearError,
+    setView,
   };
 };
 
