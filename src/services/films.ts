@@ -14,4 +14,5 @@ const getFilmsByPage = async (page: number) => {
     return data
 }
 
+
 export { getFilmsByPage, getAllFilms, getFilmsById }
