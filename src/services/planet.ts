@@ -5,13 +5,14 @@ const getAllPlanets = async () => {
     return data
 }
 
-const getPlanetById = (id: string | number) => {
-    return api.planets.getById(id)
+const getPlanetsById = async (id: number) => {
+    const { data } = await api.planets.getById(id)
+    return data
 }
 
-const getPlanetsByPage = async(page: string | number) => {
+const getPlanetsByPage = async (page: string | number) => {
     const { data } = await api.planets.getByPage(page)
     return data
 }
 
-export { getPlanetById, getAllPlanets, getPlanetsByPage }
+export { getPlanetsById, getAllPlanets, getPlanetsByPage }

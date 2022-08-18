@@ -10,7 +10,7 @@ const api = {
             return data
         },
         getByPage: (page: number): Promise<AxiosResponse<SwapiResponse<People>>> => {
-            const data = apiClient.get(`${URI.PEOPLE}/?${page}`);
+            const data = apiClient.get(`${URI.PEOPLE}/?page=${page}`);
             return data
         },
         getById: (id: string | number): Promise<AxiosResponse<SwapiResponse<People>>> => {
@@ -23,12 +23,12 @@ const api = {
             const data = apiClient.get(URI.PLANET);
             return data
         },
-        getById: (id: string | number): Promise<AxiosResponse<Planet>> => {
-            const data = apiClient.get(`${URI.PLANET}/${id}`);
+        getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(`${URI.PLANET}/?page=${page}`);
             return data
         },
-        getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<any>>> => {
-            const data = apiClient.get(`${URI.PLANET}/?${page}`);
+        getById: (id: number): Promise<AxiosResponse<SwapiResponse<any>>>  => {
+            const data = apiClient.get(`${URI.PLANET}/${id}`);
             return data
         },
     },
@@ -38,11 +38,25 @@ const api = {
             return data
         },
         getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<any>>> => {
-            const data = apiClient.get(`${URI.STARSHIP}/?${page}`);
+            const data = apiClient.get(`${URI.STARSHIP}/?page=${page}`);
             return data
         },
         getById: (id: string | number): Promise<AxiosResponse<Starship>> => {
-            const data = apiClient.get(`swapi/${id}`);
+            const data = apiClient.get(`${URI.STARSHIP}/${id}`);
+            return data
+        },
+    },
+    films: {
+        getAll: (): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(URI.FILMS);
+            return data
+        },
+        getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(`${URI.FILMS}/?page=${page}`);
+            return data
+        },
+        getById: (id: string | number): Promise<AxiosResponse<any>> => {
+            const data = apiClient.get(`${URI.FILMS}/${id}`);
             return data
         },
     }

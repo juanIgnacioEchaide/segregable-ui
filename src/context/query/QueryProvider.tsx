@@ -49,10 +49,11 @@ const QueryProvider = ({ children }: any) => {
       } else {
         byPageQuery(state?.view, state?.pageParam)
           .then((data: SwapiResponse<People | Planet | Starship>) => {
-            return updateDispatch(state?.view, setUpdatePayload(data));
+            return dispatch(updateDispatch(state?.view, setUpdatePayload(data)));
           })
           .catch((err) => dispatch(displayGenericError()));
       }
+      //todo byId
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.view, state?.pageParam]);

@@ -10,7 +10,7 @@ const getAllStarships = async () => {
 }
 
 const getStarshipsByPage = async (page: string | number) => {
-    const { data } = await api.starship.getAll()
+    const { data } = await api.starship.getByPage(page)
     return data
 }
 

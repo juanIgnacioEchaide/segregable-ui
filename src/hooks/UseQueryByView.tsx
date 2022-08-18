@@ -7,10 +7,13 @@ import {
   getAllPeople,
   getPeopleByPage,
   getAllPlanets,
+  getPlanetsById,
+  getPlanetsByPage,
   getAllStarships,
   getStarshipsByPage,
+  getPeopleById,
 } from "../services";
-import { getPlanetsByPage } from "../services/planet";
+
 
 const UseQueryByView = () => {
   const queryByView: ViewQueries = {
@@ -20,6 +23,9 @@ const UseQueryByView = () => {
       },
       byPageQuery: (page: number) => {
         return getPeopleByPage(page);
+      },
+      byIdQuery: (id: number) => {
+        return getPeopleById(id);
       },
       updateFn: (data: UpdatePayload<People>): Action => {
         return BaseActions.UpdatePeople(data) as Action;
@@ -32,6 +38,9 @@ const UseQueryByView = () => {
       byPageQuery: (page: number) => {
         return getPlanetsByPage(page);
       },
+      byIdQuery: (id: number) => {
+        return getPlanetsById(id);
+      },
       updateFn: (data: UpdatePayload<Planet>): Action => {
         return BaseActions.UpdatePlanets(data) as Action;
       },
@@ -42,6 +51,9 @@ const UseQueryByView = () => {
       },
       byPageQuery: (page: number) => {
         return getStarshipsByPage(page);
+      },
+        byIdQuery: (page: number) => {
+        return getPeopleByPage(page);
       },
       updateFn: (data: UpdatePayload<Starship>): Action => {
         return BaseActions.UpdateStarships(data) as Action;
@@ -55,6 +67,10 @@ const UseQueryByView = () => {
 
   const byPageQuery = (viewScene: VIEW, page: number) => {
     return queryByView[viewScene]?.byPageQuery(page);
+  };
+
+  const byIdQuery = (viewScene: VIEW, id: number) => {
+    return queryByView[viewScene]?.byIdQuery(id);
   };
 
   // TO BE DISPATCHED
@@ -81,6 +97,7 @@ const UseQueryByView = () => {
     queryByView,
     allQuery,
     byPageQuery,
+    byIdQuery,
     updateDispatch,
     displayGenericError,
     clearError,

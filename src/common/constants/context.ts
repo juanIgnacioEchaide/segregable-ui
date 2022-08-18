@@ -33,7 +33,7 @@ const defaultState: BaseState = {
     nextUri: '',
     prevUri: '',
     view: VIEW.DEFAULT,
-    pageParam: 0,
+    pageParam: 2,
     idParam: 0,
     people: [],
     planets: [],
@@ -57,6 +57,9 @@ const ViewByLocation: Record<ROUTES, VIEW> = {
     [ROUTES.PEOPLE]: VIEW.PEOPLE,
     [ROUTES.PLANETS]: VIEW.PLANETS,
     [ROUTES.STARSHIP]: VIEW.STARSHIP,
+    [ROUTES.VEHICLES]: VIEW.VEHICLES,
+    [ROUTES.SPECIES]: VIEW.SPECIES,
+    [ROUTES.FILMS]: VIEW.FILMS
 }
 const INITIAL_PAGE = 1
 
