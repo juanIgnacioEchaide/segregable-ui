@@ -17,6 +17,10 @@ const api = {
             const data = apiClient.get(`${URI.PEOPLE}/${id}`);
             return data
         },
+        search: (params: string ): Promise<AxiosResponse<SwapiResponse<People>>> => {
+            const data = apiClient.get(`${URI.PEOPLE}?search=${params}`);
+            return data
+        },
     },
     planets: {
         getAll: (): Promise<AxiosResponse<SwapiResponse<any>>> => {
@@ -29,6 +33,10 @@ const api = {
         },
         getById: (id: number): Promise<AxiosResponse<SwapiResponse<any>>>  => {
             const data = apiClient.get(`${URI.PLANET}/${id}`);
+            return data
+        },
+        search: (params: string ): Promise<AxiosResponse<SwapiResponse<People>>> => {
+            const data = apiClient.get(`${URI.PLANET}/search/${params}`);
             return data
         },
     },
@@ -45,6 +53,10 @@ const api = {
             const data = apiClient.get(`${URI.STARSHIP}/${id}`);
             return data
         },
+        search: (params: string ): Promise<AxiosResponse<SwapiResponse<People>>> => {
+            const data = apiClient.get(`${URI.STARSHIP}?search=${params}`);
+            return data
+        },
     },
     films: {
         getAll: (): Promise<AxiosResponse<SwapiResponse<any>>> => {
@@ -57,6 +69,10 @@ const api = {
         },
         getById: (id: string | number): Promise<AxiosResponse<SwapiResponse<Starship>>> => {
             const data = apiClient.get(`${URI.FILMS}/${id}`);
+            return data
+        },
+        search: (params: string ): Promise<AxiosResponse<SwapiResponse<People>>> => {
+            const data = apiClient.get(`${URI.FILMS}?search=${params}`);
             return data
         },
     },
@@ -73,6 +89,10 @@ const api = {
             const data = apiClient.get(`${URI.SPECIES}/${id}`);
             return data
         },
+        search: (params: string ): Promise<AxiosResponse<SwapiResponse<People>>> => {
+            const data = apiClient.get(`${URI.SPECIES}/?search=${params}`);
+            return data
+        },
     },
     vehicles: {
         getAll: (): Promise<AxiosResponse<SwapiResponse<any>>> => {
@@ -85,6 +105,10 @@ const api = {
         },
         getById: (id: string | number): Promise<AxiosResponse<any>> => {
             const data = apiClient.get(`${URI.VEHICLES}/${id}`);
+            return data
+        },
+        search: (params: string ): Promise<AxiosResponse<SwapiResponse<any>>> => {
+            const data = apiClient.get(`${URI.VEHICLES}/?search=${params}`);
             return data
         },
     },

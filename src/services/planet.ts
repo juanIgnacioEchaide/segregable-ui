@@ -15,4 +15,9 @@ const getPlanetsById = async (id: number) => {
     return data
 }
 
-export { getPlanetsById, getAllPlanets, getPlanetsByPage }
+const searchPlanets = async (params: string) => {
+    const { data } = await api.planets.search(params)
+    return data
+}
+
+export { getPlanetsById, getAllPlanets, getPlanetsByPage, searchPlanets }

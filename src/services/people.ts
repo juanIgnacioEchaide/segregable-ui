@@ -14,4 +14,9 @@ const getPeopleByPage = async (page: number) => {
     return data
 }
 
-export { getPeopleById, getAllPeople, getPeopleByPage }
+const searchPeople = async (params: string) => {
+    const { data } = await api.people.search(params)
+    return data
+}
+
+export { getPeopleById, getAllPeople, getPeopleByPage, searchPeople }
