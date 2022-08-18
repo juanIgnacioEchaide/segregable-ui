@@ -12,9 +12,15 @@ enum ActionType {
     UpdatePeople = "UpdatePeople",
     UpdatePlanets = "UpdatePlanets",
     UpdateStarships = "UpdateStarships",
+    UpdateFilms = "UpdateFilms",
+    UpdateSpecies = "UpdateSpecies",
+    UpdateVehicles = "UpdateVehicles",
+    UpdateDisplayedStarships = "UpdateDisplayedStarships", 
     UpdateDisplayedPeople = "UpdateDisplayedPeople",
     UpdateDisplayedPlanets = "UpdateDisplayedPlanets",
-    UpdateDisplayedStarships = "UpdateDisplayedStarships",
+    UpdateDisplayedFilms = "UpdateFilms",
+    UpdateDisplayedSpecies = "UpdateSpecies",
+    UpdateDisplayedVehicles = "UpdateVehicles",
 }
 
 enum StateEntity {

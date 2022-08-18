@@ -35,6 +35,18 @@ const BaseActions = {
         type: ActionType.UpdateStarships,
         payload
     }),
+    UpdateVehicles: (payload: UpdatePayload<Starship>) => ({
+        type: ActionType.UpdateVehicles,
+        payload
+    }),
+    UpdateSpecies: (payload: UpdatePayload<Starship>) => ({
+        type: ActionType.UpdateSpecies,
+        payload
+    }),
+    UpdateFilms: (payload: UpdatePayload<Starship>) => ({
+        type: ActionType.UpdateFilms,
+        payload
+    }),
     UpdateDisplayedPeople: (payload: People[]) => ({
         type: ActionType.UpdateDisplayedPeople,
         payload
@@ -45,6 +57,18 @@ const BaseActions = {
     }),
     UpdateDisplayedStarships: (payload: Starship[]) => ({
         type: ActionType.UpdateDisplayedStarships,
+        payload
+    }),
+    UpdateDisplayedVehicles: (payload: Starship[]) => ({
+        type: ActionType.UpdateDisplayedVehicles,
+        payload
+    }),
+    UpdateDisplayedSpecies: (payload: Starship[]) => ({
+        type: ActionType.UpdateDisplayedVehicles,
+        payload
+    }),
+    UpdateDisplayedFilm: (payload: Starship[]) => ({
+        type: ActionType.UpdateDisplayedVehicles,
         payload
     }),
 }

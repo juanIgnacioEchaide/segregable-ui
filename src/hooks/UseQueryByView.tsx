@@ -16,6 +16,9 @@ import {
   getAllFilms,
   getFilmsByPage,
   getFilmsById,
+  getAllSpecies,
+  getSpeciesByPage,
+  getSpeciesById,
   getAllVehicles,
   getVehiclesByPage,
   getVehiclesById,
@@ -76,7 +79,21 @@ const UseQueryByView = () => {
         return getFilmsById(id);
       },
       updateFn: (data: UpdatePayload<Starship>): Action => {
-        return BaseActions.UpdateStarships(data) as Action;
+        return BaseActions.UpdateFilms(data) as Action;
+      },
+    },
+    [VIEW.SPECIES]: {
+      allQuery: () => {
+        return getAllSpecies();
+      },
+      byPageQuery: (page: number) => {
+        return getSpeciesByPage(page);
+      },
+      byIdQuery: (id: number) => {
+        return getSpeciesById(id);
+      },
+      updateFn: (data: UpdatePayload<Starship>): Action => {
+        return BaseActions.UpdateSpecies(data) as Action;
       },
     },
     [VIEW.VEHICLES]: {
@@ -90,7 +107,7 @@ const UseQueryByView = () => {
         return getVehiclesById(id);
       },
       updateFn: (data: UpdatePayload<Starship>): Action => {
-        return BaseActions.UpdateStarships(data) as Action;
+        return BaseActions.UpdateVehicles(data) as Action;
       },
     },
   };
