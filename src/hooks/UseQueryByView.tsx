@@ -1,6 +1,6 @@
 import { People, Planet, Starship } from "../common";
 import { MESSAGE } from "../common/constants";
-import { ROUTES, VIEW } from "../common/constants/uri";
+import { VIEW } from "../common/constants/uri";
 import { ViewQueries, UpdatePayload, Action } from "../common/models/entities";
 import { BaseActions } from "../context/query/BaseActions";
 import {
@@ -16,7 +16,6 @@ const UseQueryByView = () => {
   const queryByView: ViewQueries = {
     [VIEW.PEOPLE]: {
       allQuery: () => {
-        console.log("getAllPeople");
         return getAllPeople();
       },
       byPageQuery: (page: number) => {
@@ -28,7 +27,6 @@ const UseQueryByView = () => {
     },
     [VIEW.PLANETS]: {
       allQuery: () => {
-        console.log("getAllPlanets");
         return getAllPlanets();
       },
       byPageQuery: (page: number) => {
