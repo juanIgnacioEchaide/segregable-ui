@@ -44,6 +44,7 @@ const defaultState: BaseState = {
     view: VIEW.DEFAULT,
     pageParam: 0,
     idParam: 0,
+    stringParam: '',
     people: [],
     planets: [],
     starship: [],
@@ -58,7 +59,6 @@ const defaultState: BaseState = {
         species: [],
         films: [],
     },
-    stringParam: ""
 }
 
 const defaultContextValue = {

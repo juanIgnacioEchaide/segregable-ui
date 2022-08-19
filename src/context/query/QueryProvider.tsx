@@ -30,6 +30,7 @@ const QueryProvider = ({ children }: any) => {
     allQuery,
     byPageQuery,
     byIdQuery,
+    searchQuery,
     updateDispatch,
     displayGenericError,
     setView,
@@ -44,8 +45,20 @@ const QueryProvider = ({ children }: any) => {
             return dispatch(updateDispatch(state?.view, payload));
           })
           .catch((err) => dispatch(displayGenericError()));
-      } else {
+      }
+
+      if (state?.pageParam !== 0) {
         byPageQuery(state?.view, state?.pageParam)
+          .then((data: SwapiResponse<People | Planet | Starship>) => {
+            return dispatch(
+              updateDispatch(state?.view, setUpdatePayload(data))
+            );
+          })
+          .catch((err) => dispatch(displayGenericError()));
+      }
+      
+      if (state?.idParam !== 0) {
+        byIdQuery(state?.view, state?.pageParam)
           .then((data: SwapiResponse<People | Planet | Starship>) => {
             return dispatch(
               updateDispatch(state?.view, setUpdatePayload(data))
