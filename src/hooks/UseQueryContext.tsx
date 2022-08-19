@@ -1,17 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { QueryContext } from "../context/query/QueryProvider";
 
 const UseQueryContext = () => {
   const { state, dispatch } = useContext(QueryContext);
+
   if ({ state, dispatch } === undefined) {
     throw new Error("context is unaccesible");
   }
-  const [UISettings, setUIsettings] = useState({
-    modalOn: false,
-    modalMessage: '',
-    modalTitle: '',
-    modalImage: null,
-  });
 
   return {
     people: state?.people,
@@ -20,8 +15,7 @@ const UseQueryContext = () => {
     species: state?.species,
     starship: state?.starship,
     films: state?.films,
-    setUIsettings,
-    UISettings,
+    dispatch,
   };
 };
 
