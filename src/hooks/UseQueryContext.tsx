@@ -6,7 +6,12 @@ const UseQueryContext = () => {
   if ({ state, dispatch } === undefined) {
     throw new Error("context is unaccesible");
   }
-  const [UISettings, setUIsettings] = useState({});
+  const [UISettings, setUIsettings] = useState({
+    modalOn: false,
+    modalMessage: '',
+    modalTitle: '',
+    modalImage: null,
+  });
 
   return {
     people: state?.people,
