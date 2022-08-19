@@ -20,6 +20,4 @@ const searchFilms = async (stringParam: string) => {
     return data
 }
 
-
-
 export { getFilmsByPage, getAllFilms, getFilmsById, searchFilms }

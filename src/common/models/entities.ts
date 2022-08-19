@@ -181,6 +181,7 @@ type ViewStateLogic = {
     byIdQuery: (
         id: number
     ) => Promise<SwapiResponse<People | Planet | Starship>>;
+    searchQuery: (stringParam: string) => Promise<SwapiResponse<People | Planet | Starship>>;
     updateFn: (data: UpdatePayload<People | any>) => Action;
 }
 

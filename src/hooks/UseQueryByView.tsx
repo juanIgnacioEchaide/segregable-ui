@@ -6,9 +6,11 @@ import { BaseActions } from "../context/query/BaseActions";
 import {
   getAllPeople,
   getPeopleByPage,
+  searchPeople,
   getAllPlanets,
   getPlanetsById,
   getPlanetsByPage,
+  searchPlanets,
   getAllStarships,
   getStarshipsByPage,
   getStarshipsById,
@@ -16,12 +18,16 @@ import {
   getAllFilms,
   getFilmsByPage,
   getFilmsById,
+  searchFilms,
   getAllSpecies,
   getSpeciesByPage,
   getSpeciesById,
   getAllVehicles,
   getVehiclesByPage,
   getVehiclesById,
+  searchStarship,
+  searchSpecies,
+  searchVehicles,
 } from "../services";
 
 const UseQueryByView = () => {
@@ -35,6 +41,9 @@ const UseQueryByView = () => {
       },
       byIdQuery: (id: number) => {
         return getPeopleById(id);
+      },
+      searchQuery: (stringParam: string) => {
+        return searchPeople(stringParam)
       },
       updateFn: (data: UpdatePayload<People>): Action => {
         return BaseActions.UpdatePeople(data) as Action;
@@ -50,6 +59,9 @@ const UseQueryByView = () => {
       byIdQuery: (id: number) => {
         return getPlanetsById(id);
       },
+      searchQuery: (stringParam: string) => {
+        return searchPlanets(stringParam)
+      },
       updateFn: (data: UpdatePayload<Planet>): Action => {
         return BaseActions.UpdatePlanets(data) as Action;
       },
@@ -63,6 +75,9 @@ const UseQueryByView = () => {
       },
       byIdQuery: (id: number) => {
         return getStarshipsById(id);
+      },
+      searchQuery: (stringParam: string) => {
+        return searchStarship(stringParam)
       },
       updateFn: (data: UpdatePayload<Starship>): Action => {
         return BaseActions.UpdateStarships(data) as Action;
@@ -78,6 +93,9 @@ const UseQueryByView = () => {
       byIdQuery: (id: number) => {
         return getFilmsById(id);
       },
+      searchQuery: (stringParam: string) => {
+        return searchFilms(stringParam)
+      },
       updateFn: (data: UpdatePayload<Film>): Action => {
         return BaseActions.UpdateFilms(data) as Action;
       },
@@ -92,6 +110,9 @@ const UseQueryByView = () => {
       byIdQuery: (id: number) => {
         return getSpeciesById(id);
       },
+      searchQuery: (stringParam: string) => {
+        return searchSpecies(stringParam)
+      },
       updateFn: (data: UpdatePayload<Specie>): Action => {
         return BaseActions.UpdateSpecies(data) as Action;
       },
@@ -105,6 +126,9 @@ const UseQueryByView = () => {
       },
       byIdQuery: (id: number) => {
         return getVehiclesById(id);
+      },
+      searchQuery: (stringParam: string) => {
+        return searchVehicles(stringParam)
       },
       updateFn: (data: UpdatePayload<Vehicle>): Action => {
         return BaseActions.UpdateVehicles(data) as Action;
