@@ -1,19 +1,26 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./common/constants";
+import Films from "./pages/films/Films";
+import Home from "./pages/home/Home";
+import People from "./pages/people/People";
+import Planets from "./pages/planets/Planets";
+import Species from "./pages/species/Species";
+import Starship from "./pages/starship/Starship";
+import Vehicles from "./pages/vehicles/Vehicles";
 
 
 const AppRouter = () => {
 
   const RoutesStack = [
-    { path: ROUTES.BASE, element: <p>HOME</p> },
-    { path: ROUTES.HOME, element: <p>HOME</p> },
-    { path: ROUTES.PEOPLE, element: <p>PEOPLE</p> },
-    { path: ROUTES.PLANETS, element: <p>PLANETS</p> },
-    { path: ROUTES.STARSHIP, element: <p>PLANETS</p> },
-    { path: ROUTES.FILMS, element: <p>PLANETS</p> },
-    { path: ROUTES.VEHICLES, element: <p>PLANETS</p> },
-    { path: ROUTES.SPECIES, element: <p>PLANETS</p> },
+    { path: ROUTES.BASE, element: <Home/> },
+    { path: ROUTES.HOME, element: <Home/> },
+    { path: ROUTES.PEOPLE, element: <People/> },
+    { path: ROUTES.PLANETS, element: <Planets/> },
+    { path: ROUTES.STARSHIP, element: <Starship/> },
+    { path: ROUTES.FILMS, element: <Films/> },
+    { path: ROUTES.VEHICLES, element: <Vehicles/> },
+    { path: ROUTES.SPECIES, element: <Species/> },
   ];
 
   return (

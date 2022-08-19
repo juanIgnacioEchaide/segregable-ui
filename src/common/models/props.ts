@@ -1,6 +1,8 @@
 import React from "react"
 
-type SearchProps = {
-    children: any | any[]
+type BaseProps<T> = {
+    title?:string
+    data: T[]
 }
-export type { SearchProps }
+
+export type { BaseProps }
