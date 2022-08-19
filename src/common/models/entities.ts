@@ -1,5 +1,6 @@
 import React from "react"
 import { ActionType } from "../constants"
+import { UIActionType } from "../constants/context"
 import { VIEW } from "../constants/uri"
 
 type People = {
@@ -149,8 +150,16 @@ type BaseState = {
     }
 }
 
+type UIState = {
+    modalOn: false,
+    modalTitle: string,
+    modalMessage: string,
+    modalImage: string,
+    type: string
+}
+
 type Action = {
-    type: ActionType,
+    type: ActionType | UIActionType,
     payload: any
 }
 
@@ -168,8 +177,9 @@ type UpdatePayload<T> = {
     nextUri: string | null,
     prevUri: string | null
 }
-type ContextValue = {
-    state: BaseState,
+
+type ContextValue<T> = {
+    state: T,
     dispatch: React.Dispatch<Action>
 }
 
@@ -196,6 +206,7 @@ export type {
     Specie,
     SwapiResponse,
     BaseState,
+    UIState,
     Action,
     UpdatePayload,
     PagesPayload,

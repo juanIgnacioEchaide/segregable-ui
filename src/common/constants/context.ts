@@ -1,4 +1,4 @@
-import { BaseState } from "../models/entities";
+import { BaseState, ContextValue, UIState } from "../models/entities";
 import { ROUTES, VIEW } from "./uri";
 
 enum ActionType {
@@ -32,6 +32,20 @@ enum StateEntity {
     Films = 'films'
 }
 
+enum UIActionType {
+    HideModal = 'HideModal',
+    ShowWarning = 'ShowWarning',
+    ShowSimpleDialogue = 'ShowSimpleDialogue',
+    ShowStepperDialogue = 'ShowStepperDialogue',
+}
+
+enum ModalType {
+    Default = '',
+    Warning = 'Warning',
+    SimpleDialogue = 'SimpleDialogue',
+    StepperDialogue = 'SimpleDialogue'
+}
+
 const defaultState: BaseState = {
     loading: false,
     error: false,
@@ -61,6 +75,19 @@ const defaultState: BaseState = {
     },
 }
 
+const defaultUIState: UIState = {
+    modalOn: false,
+    modalTitle: '',
+    modalMessage: '',
+    modalImage: '',
+    type: ''
+}
+
+const defaultUIContextValue: ContextValue<UIState> = {
+    state: defaultUIState,
+    dispatch: () => { }
+}
+
 const defaultContextValue = {
     state: defaultState,
     dispatch: () => { }
@@ -83,8 +110,12 @@ const INITIAL_PAGE = 1
 export {
     defaultState,
     defaultContextValue,
+    defaultUIState,
+    defaultUIContextValue,
     INITIAL_PAGE,
     ViewByLocation,
     StateEntity,
-    ActionType
+    ActionType,
+    UIActionType,
+    ModalType
 }

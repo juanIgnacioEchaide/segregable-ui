@@ -10,6 +10,7 @@ import {
 } from "../../common/constants/context";
 import { BaseReducer } from "./BaseReducer";
 import {
+  BaseState,
   ContextValue,
   People,
   Planet,
@@ -19,7 +20,7 @@ import {
 import { getLocationPath, setUpdatePayload } from "../../common/utils/helpers";
 import { UseQueryByView } from "../../hooks/UseQueryByView";
 
-const QueryContext = createContext<ContextValue>(defaultContextValue);
+const QueryContext = createContext<ContextValue<BaseState>>(defaultContextValue);
 
 const QueryProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(BaseReducer, defaultState);
