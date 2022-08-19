@@ -15,4 +15,9 @@ const getStarshipsById = async (id: number) => {
     return data
 }
 
-export { getStarshipsById, getAllStarships, getStarshipsByPage }
+const searchStarship = async (stringParam: string) => {
+    const { data } = await api.starship.search(stringParam)
+    return data
+}
+
+export { getStarshipsById, getAllStarships, getStarshipsByPage, searchStarship }

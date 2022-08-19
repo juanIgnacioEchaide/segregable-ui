@@ -9,10 +9,17 @@ const getAllFilms = async () => {
     const { data } = await api.films.getAll()
     return data
 }
+
 const getFilmsByPage = async (page: number) => {
     const { data } = await api.films.getByPage(page)
     return data
 }
 
+const searchFilms = async (stringParam: string) => {
+    const { data } = await api.films.search(stringParam)
+    return data
+}
 
-export { getFilmsByPage, getAllFilms, getFilmsById }
+
+
+export { getFilmsByPage, getAllFilms, getFilmsById, searchFilms }

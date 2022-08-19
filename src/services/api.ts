@@ -36,7 +36,7 @@ const api = {
             return data
         },
         search: (params: string ): Promise<AxiosResponse<SwapiResponse<People>>> => {
-            const data = apiClient.get(`${URI.PLANET}/search/${params}`);
+            const data = apiClient.get(`${URI.PLANET}/?search=${params}`);
             return data
         },
     },
@@ -54,7 +54,7 @@ const api = {
             return data
         },
         search: (params: string ): Promise<AxiosResponse<SwapiResponse<People>>> => {
-            const data = apiClient.get(`${URI.STARSHIP}?search=${params}`);
+            const data = apiClient.get(`${URI.STARSHIP}/?search=${params}`);
             return data
         },
     },
@@ -72,7 +72,7 @@ const api = {
             return data
         },
         search: (params: string ): Promise<AxiosResponse<SwapiResponse<People>>> => {
-            const data = apiClient.get(`${URI.FILMS}?search=${params}`);
+            const data = apiClient.get(`${URI.FILMS}/?search=${params}`);
             return data
         },
     },

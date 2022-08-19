@@ -15,4 +15,9 @@ const getVehiclesById = async (id: number) => {
     return data
 }
 
-export { getAllVehicles, getVehiclesByPage, getVehiclesById }
+const searchVehicles = async (stringParam: string) => {
+    const { data } = await api.vehicles.search(stringParam)
+    return data
+}
+
+export { getAllVehicles, getVehiclesByPage, getVehiclesById, searchVehicles }

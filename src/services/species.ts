@@ -2,7 +2,6 @@ import { api } from "./api"
 
 const getAllSpecies = async () => {
     const { data } = await api.species.getAll()
-    console.log(data)
     return data
 }
 
@@ -16,4 +15,9 @@ const getSpeciesById = async (id: number) => {
     return data
 }
 
-export { getAllSpecies, getSpeciesByPage, getSpeciesById }
+const searchSpecies = async (stringParam: string) => {
+    const { data } = await api.species.search(stringParam)
+    return data
+}
+
+export { getAllSpecies, getSpeciesByPage, getSpeciesById, searchSpecies }
