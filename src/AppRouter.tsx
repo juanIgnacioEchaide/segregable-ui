@@ -10,7 +10,10 @@ const AppRouter = () => {
     { path: ROUTES.HOME, element: <p>HOME</p> },
     { path: ROUTES.PEOPLE, element: <p>PEOPLE</p> },
     { path: ROUTES.PLANETS, element: <p>PLANETS</p> },
-    { path: ROUTES.PLANETS, element: <p>PLANETS</p> },
+    { path: ROUTES.STARSHIP, element: <p>PLANETS</p> },
+    { path: ROUTES.FILMS, element: <p>PLANETS</p> },
+    { path: ROUTES.VEHICLES, element: <p>PLANETS</p> },
+    { path: ROUTES.SPECIES, element: <p>PLANETS</p> },
   ];
 
   return (

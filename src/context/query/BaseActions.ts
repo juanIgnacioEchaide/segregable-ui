@@ -1,7 +1,7 @@
 import { People, Planet, Starship } from "../../common"
 import { ActionType } from "../../common/constants/context"
 import { VIEW } from "../../common/constants/uri"
-import { UpdatePayload } from "../../common/models/entities"
+import { Film, Specie, UpdatePayload, Vehicle } from "../../common/models/entities"
 
 const BaseActions = {
     SetLoading: (payload: boolean) => ({
@@ -35,15 +35,15 @@ const BaseActions = {
         type: ActionType.UpdateStarships,
         payload
     }),
-    UpdateVehicles: (payload: UpdatePayload<Starship>) => ({
+    UpdateVehicles: (payload: UpdatePayload<Vehicle>) => ({
         type: ActionType.UpdateVehicles,
         payload
     }),
-    UpdateSpecies: (payload: UpdatePayload<Starship>) => ({
+    UpdateSpecies: (payload: UpdatePayload<Specie>) => ({
         type: ActionType.UpdateSpecies,
         payload
     }),
-    UpdateFilms: (payload: UpdatePayload<Starship>) => ({
+    UpdateFilms: (payload: UpdatePayload<Film>) => ({
         type: ActionType.UpdateFilms,
         payload
     }),
@@ -59,15 +59,15 @@ const BaseActions = {
         type: ActionType.UpdateDisplayedStarships,
         payload
     }),
-    UpdateDisplayedVehicles: (payload: Starship[]) => ({
+    UpdateDisplayedVehicles: (payload: Vehicle[]) => ({
         type: ActionType.UpdateDisplayedVehicles,
         payload
     }),
-    UpdateDisplayedSpecies: (payload: Starship[]) => ({
+    UpdateDisplayedSpecies: (payload: Specie[]) => ({
         type: ActionType.UpdateDisplayedVehicles,
         payload
     }),
-    UpdateDisplayedFilm: (payload: Starship[]) => ({
+    UpdateDisplayedFilm: (payload: Film[]) => ({
         type: ActionType.UpdateDisplayedVehicles,
         payload
     }),

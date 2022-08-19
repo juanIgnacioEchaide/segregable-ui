@@ -1,7 +1,7 @@
 import { People, Planet, Starship } from "../common";
 import { MESSAGE } from "../common/constants";
 import { VIEW } from "../common/constants/uri";
-import { ViewQueries, UpdatePayload, Action } from "../common/models/entities";
+import { ViewQueries, UpdatePayload, Action, Vehicle, Specie, Film } from "../common/models/entities";
 import { BaseActions } from "../context/query/BaseActions";
 import {
   getAllPeople,
@@ -78,7 +78,7 @@ const UseQueryByView = () => {
       byIdQuery: (id: number) => {
         return getFilmsById(id);
       },
-      updateFn: (data: UpdatePayload<Starship>): Action => {
+      updateFn: (data: UpdatePayload<Film>): Action => {
         return BaseActions.UpdateFilms(data) as Action;
       },
     },
@@ -92,7 +92,7 @@ const UseQueryByView = () => {
       byIdQuery: (id: number) => {
         return getSpeciesById(id);
       },
-      updateFn: (data: UpdatePayload<Starship>): Action => {
+      updateFn: (data: UpdatePayload<Specie>): Action => {
         return BaseActions.UpdateSpecies(data) as Action;
       },
     },
@@ -106,7 +106,7 @@ const UseQueryByView = () => {
       byIdQuery: (id: number) => {
         return getVehiclesById(id);
       },
-      updateFn: (data: UpdatePayload<Starship>): Action => {
+      updateFn: (data: UpdatePayload<Vehicle>): Action => {
         return BaseActions.UpdateVehicles(data) as Action;
       },
     },

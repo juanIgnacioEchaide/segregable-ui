@@ -2,6 +2,7 @@ import { api } from "./api"
 
 const getAllSpecies = async () => {
     const { data } = await api.species.getAll()
+    console.log(data)
     return data
 }
 

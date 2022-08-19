@@ -15,7 +15,7 @@ enum ActionType {
     UpdateFilms = "UpdateFilms",
     UpdateSpecies = "UpdateSpecies",
     UpdateVehicles = "UpdateVehicles",
-    UpdateDisplayedStarships = "UpdateDisplayedStarships", 
+    UpdateDisplayedStarships = "UpdateDisplayedStarships",
     UpdateDisplayedPeople = "UpdateDisplayedPeople",
     UpdateDisplayedPlanets = "UpdateDisplayedPlanets",
     UpdateDisplayedFilms = "UpdateFilms",
@@ -27,6 +27,9 @@ enum StateEntity {
     People = 'people',
     Planets = 'planets',
     Starship = 'starship',
+    Vehicles = 'vehicles',
+    Species = 'species',
+    Films = 'films'
 }
 
 const defaultState: BaseState = {
@@ -39,16 +42,23 @@ const defaultState: BaseState = {
     nextUri: '',
     prevUri: '',
     view: VIEW.DEFAULT,
-    pageParam: 2,
+    pageParam: 0,
     idParam: 0,
     people: [],
     planets: [],
     starship: [],
+    vehicles: [],
+    species: [],
+    films: [],
     displayed: {
         people: [],
         planets: [],
         starship: [],
-    }
+        vehicles: [],
+        species: [],
+        films: [],
+    },
+    stringParam: ""
 }
 
 const defaultContextValue = {

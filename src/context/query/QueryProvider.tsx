@@ -16,10 +16,7 @@ import {
   Starship,
   SwapiResponse,
 } from "../../common/models/entities";
-import {
-  getLocationPath,
-  setUpdatePayload,
-} from "../../common/utils/helpers";
+import { getLocationPath, setUpdatePayload } from "../../common/utils/helpers";
 import { UseQueryByView } from "../../hooks/UseQueryByView";
 
 const QueryContext = createContext<ContextValue>(defaultContextValue);
@@ -32,6 +29,7 @@ const QueryProvider = ({ children }: any) => {
   const {
     allQuery,
     byPageQuery,
+    byIdQuery,
     updateDispatch,
     displayGenericError,
     setView,
@@ -49,13 +47,14 @@ const QueryProvider = ({ children }: any) => {
       } else {
         byPageQuery(state?.view, state?.pageParam)
           .then((data: SwapiResponse<People | Planet | Starship>) => {
-            return dispatch(updateDispatch(state?.view, setUpdatePayload(data)));
+            return dispatch(
+              updateDispatch(state?.view, setUpdatePayload(data))
+            );
           })
           .catch((err) => dispatch(displayGenericError()));
       }
-      //todo byId
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.view, state?.pageParam]);
 
   useEffect(() => {

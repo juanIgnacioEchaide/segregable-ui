@@ -6,10 +6,10 @@ type People = {
     name: string
     height: string,
     mass: string,
-    hair_color: string,
-    skin_color: string,
-    eye_color: string,
-    birth_year: string,
+    hairColor: string,
+    skinColor: string,
+    eyeColor: string,
+    birthYear: string,
     gender: string,
     homeworld: string
     films: string[],
@@ -23,13 +23,13 @@ type People = {
 
 type Planet = {
     name: string,
-    rotation_period: string,
-    orbital_period: string,
+    rotationPeriod: string,
+    orbitalPeriod: string,
     diameter: string,
     climate: string,
     gravity: string,
     terrain: string,
-    surface_water: string,
+    surfaceWater: string,
     population: string,
     residents: string[],
     films: string[],
@@ -42,16 +42,16 @@ type Starship = {
     name: string,
     model: string,
     manufacturer: string,
-    cost_in_credits: string,
+    costInCredits: string,
     length: string,
-    max_atmosphering_speed: string,
+    maxAtmospheringSpeed: string,
     crew: string,
     passengers: string,
-    cargo_capacity: string,
+    cargoCapacity: string,
     consumables: string,
-    hyperdrive_rating: string,
+    hyperdriveRating: string,
     MGLT: string,
-    starship_class: string,
+    starshipClass: string,
     pilots: [],
     films: string[],
     created: string,
@@ -59,6 +59,60 @@ type Starship = {
     url: string
 }
 
+type Vehicle = {
+    cargoCapacity: string,
+    consumables: string,
+    costInCredits: string,
+    created: string,
+    crew: string,
+    edited: string,
+    /* url to fetch by id */
+    films: string[],
+    length: string
+    manufacturer: string,
+    maxAtmospheringSpeed: string,
+    model: string,
+    name: string,
+    passengers: string,
+    pilots: string[]
+    url: string,
+    vehicleClass: string,
+}
+
+type Film = {
+    characters: string[],
+    created: string,
+    director: string,
+    edited: string,
+    episodeId: 4,
+    openingCrawl: string,
+    planets: string[],
+    producer: string
+    releaseDate: string
+    species: string[]
+    starships: string[]
+    title: string
+    url: string
+    vehicles: string[]
+}
+
+type Specie = {
+    averageHeight: string
+    averageLifespan: string
+    classification: string
+    created: string
+    designation: string
+    edited: string
+    eyeColors: string
+    films: string[]
+    hairColors: string
+    homeworld: string
+    language: string
+    name: string
+    people: string[]
+    skinColors: string
+    url: string
+}
 type SwapiResponse<T> = {
     count: number,
     next: string | null,
@@ -77,14 +131,21 @@ type BaseState = {
     prevUri: string,
     view: VIEW,
     pageParam: number,
-    idParam: number | string,
+    idParam: number,
+    stringParam: string,
     people: People[]
     planets: Planet[]
     starship: Starship[]
+    vehicles: Vehicle[],
+    species: Specie[],
+    films: Film[],
     displayed: {
         people: People[]
         planets: Planet[]
         starship: Starship[]
+        vehicles: Vehicle[],
+        species: Specie[],
+        films: Film[],
     }
 }
 
@@ -113,13 +174,13 @@ type ContextValue = {
 }
 
 type ViewStateLogic = {
-    allQuery: () => Promise<SwapiResponse<People | Planet| Starship>>;
+    allQuery: () => Promise<SwapiResponse<People | Planet | Starship>>;
     byPageQuery: (
         page: number
-    ) => Promise<SwapiResponse<People | Planet| Starship>>;
+    ) => Promise<SwapiResponse<People | Planet | Starship>>;
     byIdQuery: (
         id: number
-    ) => Promise<SwapiResponse<People | Planet| Starship>>;
+    ) => Promise<SwapiResponse<People | Planet | Starship>>;
     updateFn: (data: UpdatePayload<People | any>) => Action;
 }
 
@@ -129,6 +190,9 @@ export type {
     People,
     Planet,
     Starship,
+    Vehicle,
+    Film,
+    Specie,
     SwapiResponse,
     BaseState,
     Action,
