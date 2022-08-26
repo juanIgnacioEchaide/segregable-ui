@@ -1,4 +1,5 @@
 import { BaseState, ContextValue, UIState } from "../models/entities";
+import { SIZE } from "./media";
 import { ROUTES, VIEW } from "./uri";
 
 enum ActionType {
@@ -34,6 +35,7 @@ enum StateEntity {
 
 enum UIActionType {
     HideModal = 'HideModal',
+    UpdateViewport = 'UpdateViewport',
     ShowWarning = 'ShowWarning',
     ShowSimpleDialogue = 'ShowSimpleDialogue',
     ShowStepperDialogue = 'ShowStepperDialogue',
@@ -80,7 +82,8 @@ const defaultUIState: UIState = {
     modalTitle: '',
     modalMessage: '',
     modalImage: '',
-    type: ''
+    type: '',
+    viewport: SIZE.DEFAULT
 }
 
 const defaultUIContextValue: ContextValue<UIState> = {
@@ -105,7 +108,6 @@ const ViewByLocation: Record<ROUTES, VIEW> = {
     [ROUTES.FILMS]: VIEW.FILMS
 }
 const INITIAL_PAGE = 1
-
 
 export {
     defaultState,

@@ -1,5 +1,5 @@
 import React from "react"
-import { ActionType } from "../constants"
+import { ActionType, SIZE } from "../constants"
 import { UIActionType } from "../constants/context"
 import { VIEW } from "../constants/uri"
 
@@ -151,11 +151,12 @@ type BaseState = {
 }
 
 type UIState = {
-    modalOn: false,
+    modalOn: boolean,
     modalTitle: string,
     modalMessage: string,
     modalImage: string,
-    type: string
+    type: string,
+    viewport: SIZE
 }
 
 type Action = {
@@ -176,6 +177,12 @@ type UpdatePayload<T> = {
     results: T[],
     nextUri: string | null,
     prevUri: string | null
+}
+
+type ModalUpdate = {
+    modalTitle: string,
+    modalMessage: string,
+    modalImage: string,
 }
 
 type ContextValue<T> = {
@@ -208,6 +215,7 @@ export type {
     BaseState,
     UIState,
     Action,
+    ModalUpdate,
     UpdatePayload,
     PagesPayload,
     ContextValue,

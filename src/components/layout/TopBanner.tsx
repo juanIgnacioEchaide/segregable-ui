@@ -22,7 +22,7 @@ const TopBanner = ({ isOpen, onOpen, onClose }: any): JSX.Element => {
       >
         <div
           style={{
-            marginLeft: "10px",
+            marginLeft: "15px",
           }}
           onClick={() => handleOpen()}
         >
