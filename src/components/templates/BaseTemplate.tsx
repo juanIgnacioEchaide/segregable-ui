@@ -1,58 +1,54 @@
-import { useContext } from "react";
-import { VIEW } from "../../common/constants/uri";
-import { BaseProps } from "../../common/models/props";
+import React from "react";
+import {
+  ContainerBox,
+  ContentBox,
+  CarouselBox,
+  SearchBox,
+  DescriptionBox,
+} from "../molecules/Box";
 
-const BaseTemplate = ({ children, view, size, theme }: any) => {
-
-  const BaseBox = ({ children }: BaseProps) => {
-    return (<div>{children}</div>)
-  };
-
-  const ContainerBox = ({ children, view, size, theme }: BaseProps) => {
-    return (
-      <BaseBox view={view} size={size} theme={theme}>
-        {children}
-      </BaseBox>
-    );
-  };
-
-  const ContentBox = ({ children, view, size, theme }: BaseProps) => {
-    return (
-      <BaseBox view={view} size={size} theme={theme}>
-        {children}
-      </BaseBox>
-    );
-  };
-
-  const CarouselBox = ({ children, view, size, theme }: BaseProps) => {
-    return (
-      <BaseBox view={view} size={size} theme={theme}>
-        {children}
-      </BaseBox>
-    );
-  };
-
-  const SearchBox = ({ children, view, size, theme }: BaseProps) => {
-    return (
-      <BaseBox view={view} size={size} theme={theme}>
-        {children}
-      </BaseBox>
-    );
-  };
-
-  const DescriptionBox = ({ children, view, size, theme }: BaseProps) => {
-    return (
-      <BaseBox view={view} size={size} theme={theme}>
-        {children}
-      </BaseBox>
-    );
-  };
+const BaseTemplate = ({ children, view, size, theme, bg }: any) => {
   return (
-    <ContainerBox view={view} size={size} theme={theme}>
-      <ContentBox view={view} size={size} theme={theme}>
-        <CarouselBox view={view} size={size} theme={theme} />
-        <SearchBox view={view} size={size} theme={theme} />
-        <DescriptionBox view={view} size={size} theme={theme} />
+    <ContainerBox
+      view={view}
+      size={size}
+      theme={theme}
+      height={""}
+      width={""}
+      bg={bg}
+    >
+      <ContentBox
+        view={view}
+        size={size}
+        theme={theme}
+        height={""}
+        width={""}
+        bg={bg}
+      >
+        <CarouselBox
+          view={view}
+          size={size}
+          theme={theme}
+          height={""}
+          width={""}
+          bg={bg}
+        />
+        <SearchBox
+          view={view}
+          size={size}
+          theme={theme}
+          height={""}
+          width={""}
+          bg={bg}
+        />
+        <DescriptionBox
+          view={view}
+          size={size}
+          theme={theme}
+          height={""}
+          width={""}
+          bg={bg}
+        />
       </ContentBox>
     </ContainerBox>
   );

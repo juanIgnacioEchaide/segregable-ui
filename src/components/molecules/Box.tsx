@@ -1,42 +1,76 @@
-import { VIEW } from "../../common/constants/uri";
 import { BaseProps } from "../../common/models/props";
 import { BaseBox } from "../atoms/Box";
 
-const ContainerBox = ({ children, view, size, theme }: BaseProps) => {
+const ContainerBox = ({ children, view, size, theme, bg }: BaseProps) => {
   return (
-    <BaseBox view={VIEW.DEFAULT} size={""} theme={""}>
+    <BaseBox
+      view={view}
+      size={size}
+      theme={theme}
+      height={""}
+      width={""}
+      bg={bg}
+    >
       {children}
     </BaseBox>
   );
 };
 
-const ContentBox = ({ children, view, size, theme }: BaseProps) => {
+const ContentBox = ({ children, view, size, theme, bg }: BaseProps) => {
   return (
-    <BaseBox view={VIEW.DEFAULT} size={""} theme={""}>
+    <BaseBox
+      view={view}
+      size={size}
+      theme={theme}
+      height={""}
+      width={""}
+      bg={bg}
+    >
       {children}
     </BaseBox>
   );
 };
 
-const CarouselBox = ({ children, view, size, theme }: BaseProps) => {
+const CarouselBox = ({ children, view, size, theme, bg }: BaseProps) => {
   return (
-    <BaseBox view={VIEW.DEFAULT} size={""} theme={""}>
+    <BaseBox
+      view={view}
+      size={size}
+      theme={theme}
+      height={""}
+      width={""}
+      bg={bg}
+    >
       {children}
     </BaseBox>
   );
 };
 
-const SearchBox = ({ children, view, size, theme }: BaseProps) => {
+const SearchBox = ({ children, view, size, theme, bg }: BaseProps) => {
   return (
-    <BaseBox view={VIEW.DEFAULT} size={""} theme={""}>
+    <BaseBox
+      view={view}
+      size={size}
+      theme={theme}
+      height={""}
+      width={""}
+      bg={bg}
+    >
       {children}
     </BaseBox>
   );
 };
 
-const DescriptionBox = ({ children, view, size, theme }: BaseProps) => {
+const DescriptionBox = ({ children, view, size, theme, bg }: BaseProps) => {
   return (
-    <BaseBox view={VIEW.DEFAULT} size={""} theme={""}>
+    <BaseBox
+      view={view}
+      size={size}
+      theme={theme}
+      height={""}
+      width={""}
+      bg={bg}
+    >
       {children}
     </BaseBox>
   );

@@ -3,4 +3,4 @@ enum SIZE {
     DESKTOP = 'DESKTOP'
 }
 
-export type { SIZE }
+export { SIZE }
