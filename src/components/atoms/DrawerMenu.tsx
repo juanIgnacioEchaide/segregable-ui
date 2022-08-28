@@ -6,6 +6,7 @@ import {
   Box,
   FormLabel,
 } from "@chakra-ui/react";
+import { DrawerLinksProps, isMobile } from "../../common";
 import { Selectables, StateEntity } from "../../common/constants/context";
 
 const SearchInput = () => {
@@ -24,9 +25,18 @@ const SearchInput = () => {
   );
 };
 
-const DrawerLinks = ({ searchModuleOpen, setsearchModuleOpen }: any) => {
+const DrawerLinks = ({
+  searchModuleOpen,
+  setsearchModuleOpen,
+  size,
+}: DrawerLinksProps) => {
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: isMobile(size) ? "column" : "row",
+      }}
+    >
       {Selectables?.map((i: any) => (
         <p
           onClick={() => {
@@ -43,7 +53,7 @@ const DrawerLinks = ({ searchModuleOpen, setsearchModuleOpen }: any) => {
           {i.entity}
         </p>
       ))}
-    </>
+    </div>
   );
 };
 export { SearchInput, DrawerLinks };

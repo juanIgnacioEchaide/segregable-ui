@@ -9,4 +9,15 @@ export type {
 
 export { URI } from './constants/uri'
 
+export type { BaseProps, MapItemsProps, DrawerLinksProps } from './models/props'
+
 export { defaultState, defaultContextValue, ActionType } from './constants/context'
+
+export {
+    getPageFromUri,
+    getLocationPath,
+    setUpdatePayload,
+    updateAfterLoad,
+    updateDisplayed,
+    isMobile,
+} from './utils/helpers'

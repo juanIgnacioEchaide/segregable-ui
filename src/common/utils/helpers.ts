@@ -1,3 +1,4 @@
+import { SIZE } from "../constants";
 import { INITIAL_PAGE, StateEntity } from "../constants/context";
 import { VIEW } from "../constants/uri";
 import { BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
@@ -55,6 +56,9 @@ const updateDisplayed = (entity: StateEntity, payload: any, state: BaseState) =>
     } as BaseState
 }
 
+const isMobile = (view: SIZE) => {
+    return view === SIZE.MOBILE
+}
 
 export {
     getPageFromUri,
@@ -62,4 +66,5 @@ export {
     setUpdatePayload,
     updateAfterLoad,
     updateDisplayed,
+    isMobile,
 }
