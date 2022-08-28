@@ -1,6 +1,6 @@
 import { SIZE } from "../constants";
 import { INITIAL_PAGE, StateEntity } from "../constants/context";
-import { VIEW } from "../constants/uri";
+import { ROUTES, VIEW } from "../constants/uri";
 import { BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
 
 const getPageFromUri = (uri: string | null): number => {
@@ -60,6 +60,10 @@ const isMobile = (view: SIZE) => {
     return view === SIZE.MOBILE
 }
 
+const navigate = (route: ROUTES) => {
+    return window.location.assign(route);
+  };
+  
 export {
     getPageFromUri,
     getLocationPath,
@@ -67,4 +71,5 @@ export {
     updateAfterLoad,
     updateDisplayed,
     isMobile,
+    navigate,
 }

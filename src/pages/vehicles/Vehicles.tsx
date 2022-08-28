@@ -1,7 +1,7 @@
 import React from "react";
 
 const Vehicles = ():JSX.Element => {
-  return <div>SPECIES</div>;
+  return <div>Vehicles</div>;
 };
 
 export default Vehicles;

@@ -8,13 +8,11 @@ import {
   DrawerFooter,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { ROUTES, SIZE } from "../../../common/constants";
+import { DrawerMenuProps } from "../../../common";
+import { SIZE } from "../../../common/constants";
 import { DrawerLinks, SearchInput } from "../../atoms/DrawerMenu";
 
-const DrawerMenu = ({ isOpen, firstField, onClose }: any) => {
-  const navigateTo = (route: ROUTES) => {
-    return window.location.assign(route);
-  };
+const DrawerMenu = ({ isOpen, firstField, onOpen, onClose }: DrawerMenuProps) => {
 
   const [searchModuleOpen, setsearchModuleOpen] = useState<boolean>(false);
 

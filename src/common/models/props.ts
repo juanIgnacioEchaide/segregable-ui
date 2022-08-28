@@ -1,4 +1,4 @@
-import React from "react"
+import React, { RefObject } from "react"
 import { SIZE } from "../constants";
 import { VIEW } from "../constants/uri";
 
@@ -15,11 +15,16 @@ type BaseProps = {
 interface MapItemsProps<T> extends BaseProps {
   items: T | T[]
 }
-
+type DrawerMenuProps = {
+  isOpen: boolean,
+  firstField?: RefObject<any>,
+  onOpen: () => void,
+  onClose: () => void,
+}
 type DrawerLinksProps = {
-  searchModuleOpen?: boolean;
-  setsearchModuleOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  searchModuleOpen: boolean;
+  setsearchModuleOpen: React.Dispatch<React.SetStateAction<boolean>>;
   size: SIZE;
 };
 
-export type { BaseProps, MapItemsProps, DrawerLinksProps }
+export type { BaseProps, MapItemsProps, DrawerMenuProps, DrawerLinksProps }
