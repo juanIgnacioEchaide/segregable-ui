@@ -30,8 +30,18 @@ enum StateEntity {
     Starship = 'starship',
     Vehicles = 'vehicles',
     Species = 'species',
-    Films = 'films'
+    Films = 'films',
+    Search = 'search'
 }
+
+const ItemKinds = [
+    StateEntity.People,
+    StateEntity.Planets,
+    StateEntity.Vehicles,
+    StateEntity.Starship,
+    StateEntity.Species,
+    StateEntity.Films,
+]
 
 enum UIActionType {
     HideModal = 'HideModal',
@@ -105,8 +115,20 @@ const ViewByLocation: Record<ROUTES, VIEW> = {
     [ROUTES.STARSHIP]: VIEW.STARSHIP,
     [ROUTES.VEHICLES]: VIEW.VEHICLES,
     [ROUTES.SPECIES]: VIEW.SPECIES,
-    [ROUTES.FILMS]: VIEW.FILMS
+    [ROUTES.FILMS]: VIEW.FILMS,
+    [ROUTES.SEARCH]: VIEW.SEARCH
 }
+
+const Selectables = [
+    { selected: false, entity: StateEntity.People, uri: ROUTES.PEOPLE },
+    { selected: false, entity: StateEntity.Films, uri: ROUTES.FILMS },
+    { selected: false, entity: StateEntity.Planets, uri: ROUTES.PLANETS },
+    { selected: false, entity: StateEntity.Species, uri: ROUTES.SPECIES },
+    { selected: false, entity: StateEntity.Starship, uri: ROUTES.STARSHIP },
+    { selected: false, entity: StateEntity.Vehicles, uri: ROUTES.VEHICLES },
+    { selected: false, entity: StateEntity.Search, uri: ROUTES.SEARCH },
+];
+
 const INITIAL_PAGE = 1
 
 export {
@@ -116,6 +138,8 @@ export {
     defaultUIContextValue,
     INITIAL_PAGE,
     ViewByLocation,
+    ItemKinds,
+    Selectables,
     StateEntity,
     ActionType,
     UIActionType,

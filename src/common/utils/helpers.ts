@@ -1,6 +1,4 @@
-import { BaseActions } from "../../context/query/BaseActions";
-import { ROUTES } from "../constants";
-import { INITIAL_PAGE, StateEntity, ViewByLocation } from "../constants/context";
+import { INITIAL_PAGE, StateEntity } from "../constants/context";
 import { VIEW } from "../constants/uri";
 import { BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
 

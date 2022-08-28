@@ -17,7 +17,8 @@ enum ROUTES {
     STARSHIP = "/starship",
     FILMS = "/films",
     VEHICLES = "/vehicles",
-    SPECIES = "/species"
+    SPECIES = "/species",
+    SEARCH = "/search"
 }
 
 enum VIEW {
@@ -28,7 +29,8 @@ enum VIEW {
     STARSHIP = "starship",
     FILMS = "films",
     VEHICLES = "vehicles",
-    SPECIES = "species"
+    SPECIES = "species",
+    SEARCH = "search"
 }
 
 export { URI, ROUTES, VIEW }

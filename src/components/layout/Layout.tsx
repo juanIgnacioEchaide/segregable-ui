@@ -12,6 +12,7 @@ const Layout = ({ children }: any): JSX.Element => {
     >
       <TopBanner isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       <DrawerMenu isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+      {children}
     </div>
   );
 };

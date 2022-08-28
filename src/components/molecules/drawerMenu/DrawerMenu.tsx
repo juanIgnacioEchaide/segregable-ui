@@ -5,15 +5,10 @@ import {
   DrawerCloseButton,
   DrawerHeader,
   DrawerBody,
-  FormLabel,
-  Input,
-  InputGroup,
   DrawerFooter,
-  Box,
-  IconButton,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
 import { ROUTES } from "../../../common/constants";
+import { DrawerLinks, SearchInput } from "../../atoms/DrawerMenu";
 
 const DrawerMenu = ({ isOpen, firstField, onClose }: any) => {
   const navigateTo = (route: ROUTES) => {
@@ -31,21 +26,9 @@ const DrawerMenu = ({ isOpen, firstField, onClose }: any) => {
       <DrawerContent>
         <DrawerCloseButton />
         <DrawerHeader borderBottomWidth="1px">Swapi</DrawerHeader>
-
+        <DrawerLinks />
         <DrawerBody>
-          {/*  <Stack spacing="24px"> */}
-          <Box justifyContent={"center"} alignItems={"center"}>
-            <FormLabel htmlFor="earch_param">Search</FormLabel>
-            <InputGroup>
-              <Input
-                type="text"
-                id="search_param"
-                placeholder="Search freely"
-              />
-              <IconButton aria-label="Search database" icon={<SearchIcon />} />
-            </InputGroup>
-          </Box>
-          {/* </Stack> */}
+          <SearchInput />
         </DrawerBody>
 
         <DrawerFooter borderTopWidth="1px"></DrawerFooter>
