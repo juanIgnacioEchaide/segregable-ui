@@ -1,18 +1,55 @@
-import { SearchIcon } from "@chakra-ui/icons";
+import { ArrowLeftIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   InputGroup,
   Input,
   IconButton,
   Box,
   FormLabel,
+  Button,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { DrawerLinksProps, isMobile } from "../../common";
 import { Selectables, StateEntity } from "../../common/constants/context";
+
+const DrawerSearchItems = () => {
+  const [items, setItems] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (items?.length)
+      return setItems(() => {
+        return Selectables?.map((i) => ({ ...i, selected: false }));
+      });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div>
+      {Selectables?.map(
+        (i) =>
+          i.entity !== StateEntity.Search && (
+            <Button size={"xs"} width="50px">
+              <p style={{ fontSize: "10px" }}>{i.entity}</p>
+            </Button>
+          )
+      )}
+    </div>
+  );
+};
 
 const SearchInput = () => {
   return (
     <Box justifyContent={"center"} alignItems={"center"}>
-      <FormLabel htmlFor="earch_param">Search</FormLabel>
+      <div
+        style={{
+          paddingBottom: "10px",
+          paddingTop: "10px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <FormLabel htmlFor="earch_param">Search</FormLabel>
+        <DrawerSearchItems />
+      </div>
       <InputGroup>
         <Input
           type="text"
@@ -30,6 +67,12 @@ const DrawerLinks = ({
   setsearchModuleOpen,
   size,
 }: DrawerLinksProps) => {
+  const handleOpen = (i: any) => {
+    return i.entity !== StateEntity.Search
+      ? window.location.assign(i.uri)
+      : setsearchModuleOpen(!searchModuleOpen);
+  };
+
   return (
     <div
       style={{
@@ -39,11 +82,7 @@ const DrawerLinks = ({
     >
       {Selectables?.map((i: any) => (
         <p
-          onClick={() => {
-            i.entity !== StateEntity.Search
-              ? window.location.assign(i.uri)
-              : setsearchModuleOpen(!searchModuleOpen);
-          }}
+          onClick={() => handleOpen(i)}
           style={{
             lineHeight: "50px",
             justifyContent: "center",
@@ -56,4 +95,15 @@ const DrawerLinks = ({
     </div>
   );
 };
-export { SearchInput, DrawerLinks };
+
+const SearchMenu = ({ setOpen }: any) => {
+  return (
+    <>
+      <SearchInput />
+      <div style={{ padding: "20px" }} onClick={() => setOpen(false)}>
+        <ArrowLeftIcon />
+      </div>
+    </>
+  );
+};
+export { SearchInput, DrawerLinks, SearchMenu };

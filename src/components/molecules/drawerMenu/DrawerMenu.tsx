@@ -10,10 +10,14 @@ import {
 import { useState } from "react";
 import { DrawerMenuProps } from "../../../common";
 import { SIZE } from "../../../common/constants";
-import { DrawerLinks, SearchInput } from "../../atoms/DrawerMenu";
+import { DrawerLinks, SearchMenu } from "../../atoms/DrawerMenu";
 
-const DrawerMenu = ({ isOpen, firstField, onOpen, onClose }: DrawerMenuProps) => {
-
+const DrawerMenu = ({
+  isOpen,
+  firstField,
+  onOpen,
+  onClose,
+}: DrawerMenuProps) => {
   const [searchModuleOpen, setsearchModuleOpen] = useState<boolean>(false);
 
   return (
@@ -27,15 +31,19 @@ const DrawerMenu = ({ isOpen, firstField, onOpen, onClose }: DrawerMenuProps) =>
       <DrawerContent>
         <DrawerCloseButton />
         <DrawerHeader borderBottomWidth="1px">Swapi</DrawerHeader>
-        <DrawerLinks
-          searchModuleOpen={searchModuleOpen}
-          setsearchModuleOpen={setsearchModuleOpen}
-          size={SIZE.MOBILE}
-        />
-        <DrawerBody>
-          <SearchInput />
-        </DrawerBody>
-        <DrawerFooter borderTopWidth="1px"></DrawerFooter>
+        {!searchModuleOpen && (
+          <DrawerLinks
+            searchModuleOpen={searchModuleOpen}
+            setsearchModuleOpen={setsearchModuleOpen}
+            size={SIZE.MOBILE}
+          />
+        )}
+        {searchModuleOpen && (
+          <DrawerBody>
+            <SearchMenu setOpen={setsearchModuleOpen} />
+          </DrawerBody>
+        )}
+        <DrawerFooter borderTopWidth="1px" />
       </DrawerContent>
     </Drawer>
   );
