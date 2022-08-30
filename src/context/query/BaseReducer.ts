@@ -1,77 +1,68 @@
-import { ActionType } from "../../common/constants/context";
+import { ActionType, StateEntity } from "../../common/constants/context";
 import { Action, BaseState } from "../../common/models/entities";
+import { updateAfterLoad, updateDisplayed } from "../../common/utils/helpers";
 
 const BaseReducer = (state: BaseState, action: Action): BaseState => {
+
     switch (action.type) {
-        case ActionType.SetLoading: return { 
-            ...state, 
-            loading: action.payload 
-        }
-        case ActionType.SetNextUri: return { 
-            ...state, 
-            nextUri: action.payload 
-        }
-        case ActionType.SetPrevUri: return { 
-            ...state, 
-            prevUri: action.payload 
-        }
-        case ActionType.SetError: return { 
-            ...state, 
-            error: true, 
-            errorMessage: action.payload 
-        }
-        case ActionType.ClearError: return { 
-            ...state, 
-            error: false, 
-            errorMessage: '' 
-        }
-        case ActionType.UpdatePages: return { 
-            ...state, 
-            currentPage: action.payload.currentPage, 
-            prevPage: action.payload.prevPage, 
-            nextPage: action.payload.nextPage 
-        }
-        case ActionType.UpdatePeople: return {
+        //// UI FLAGS & NAVIGATION 
+        case ActionType.SetLoading: return {
             ...state,
-            loading: false,
+            loading: action.payload
+        }
+        case ActionType.SetError: return {
+            ...state,
+            error: true,
+            errorMessage: action.payload
+        }
+        case ActionType.ClearError: return {
+            ...state,
             error: false,
-            errorMessage: '',
-            people: action.payload
+            errorMessage: ''
+        }
+        case ActionType.SetView: return {
+            ...state,
+            view: action.payload
+        }
+
+        ///// POPULATES PERSISTENT GLOBAL STATE 
+        case ActionType.UpdatePeople: return {
+            ...updateAfterLoad(StateEntity.People, action.payload, state)
+        }
+        case ActionType.UpdateSpecies: return {
+            ...updateAfterLoad(StateEntity.Species, action.payload, state)
         }
         case ActionType.UpdatePlanets: return {
-            ...state,
-            loading: false,
-            error: false,
-            errorMessage: '',
-            planets: action.payload
+            ...updateAfterLoad(StateEntity.Planets, action.payload, state)
         }
         case ActionType.UpdateStarships: return {
-            ...state,
-            loading: false,
-            error: false,
-            errorMessage: '',
-            starship: action.payload
+            ...updateAfterLoad(StateEntity.Starship, action.payload, state)
         }
-        case ActionType.UpdateDisplayedPeople: return { 
-            ...state, 
-            displayed: { 
-                ...state.displayed, 
-                people: action.payload 
-            }
+        case ActionType.UpdateVehicles: return {
+            ...updateAfterLoad(StateEntity.Vehicles, action.payload, state)
         }
-        case ActionType.UpdateDisplayedPlanets: return { 
-            ...state, 
-            displayed: { 
-                ...state.displayed, 
-                planets: action.payload 
-            } 
+        case ActionType.UpdateFilms: return {
+            ...updateAfterLoad(StateEntity.Films, action.payload, state)
         }
-        case ActionType.UpdateDisplayedStarships: return { 
-            ...state, 
-            displayed: { 
-                ...state.displayed, 
-                starship: action.payload 
-            } 
+
+        ///// POPULATES DISPLAYED STATE
+        case ActionType.UpdateDisplayedPeople: return {
+            ...updateDisplayed(StateEntity.People, action.payload, state)
+        }
+        case ActionType.UpdateDisplayedPlanets: return {
+            ...updateDisplayed(StateEntity.Planets, action.payload, state)
+        }
+        case ActionType.UpdateDisplayedStarships: return {
+            ...updateDisplayed(StateEntity.Starship, action.payload, state)
+        }
+        case ActionType.UpdateDisplayedVehicles: return {
+            ...updateDisplayed(StateEntity.Vehicles, action.payload, state)
+        }
+        case ActionType.UpdateDisplayedSpecies: return {
+            ...updateDisplayed(StateEntity.Species, action.payload, state)
+        }
+        case ActionType.UpdateDisplayedFilms: return {
+            ...updateDisplayed(StateEntity.Films, action.payload, state)
         }
         default: return state
     }

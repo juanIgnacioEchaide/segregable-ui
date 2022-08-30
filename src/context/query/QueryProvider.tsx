@@ -2,7 +2,6 @@ import React, {
   useEffect,
   createContext,
   useReducer,
-  useState,
   useCallback,
 } from "react";
 import {
@@ -10,68 +9,77 @@ import {
   defaultState,
 } from "../../common/constants/context";
 import { BaseReducer } from "./BaseReducer";
-import { ContextValue, SwapiResponse } from "../../common/models/entities";
-import { getAllPeople, getPeopleByPage } from "../../services";
-import { BaseActions } from "./BaseActions";
-import { getPageFromUri } from "../../common/utils/helpers";
-import { MESSAGE, ROUTES } from "../../common/constants";
+import {
+  BaseState,
+  ContextValue,
+  People,
+  Planet,
+  Starship,
+  SwapiResponse,
+} from "../../common/models/entities";
+import { getLocationPath, setUpdatePayload } from "../../common/utils/helpers";
+import { UseQueryByView } from "../../hooks/UseQueryByView";
 
-const QueryContext = createContext<ContextValue>(defaultContextValue);
+const QueryContext = createContext<ContextValue<BaseState>>(defaultContextValue);
 
 const QueryProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(BaseReducer, defaultState);
+  const viewPath = getLocationPath();
   const value = { state, dispatch };
 
-  const successHandler = (data: SwapiResponse<any>) => {
-    // promise succeeded => dispatch to state
-    if (data?.results.length) {
-      // context state updated according to route
-      return Promise.all([
-        // set the previous page
-        dispatch(BaseActions.SetPrevUri(data?.previous || "")),
+  const {
+    allQuery,
+    byPageQuery,
+    byIdQuery,
+    searchQuery,
+    updateDispatch,
+    displayGenericError,
+    setView,
+  } = UseQueryByView();
 
-        // set the next page to fetch
-        dispatch(BaseActions.SetNextUri(data?.next || "")),
-
-        // set the pages to be displayed at UI
-        dispatch(
-          BaseActions.UpdatePages({
-            currentPage: getPageFromUri(data?.next) - 1,
-            prevPage: getPageFromUri(data?.previous),
-            nextPage: getPageFromUri(data?.next),
+  const fetchDataByPage = useCallback(() => {
+    if (state?.view) {
+      if (state?.pageParam === 0) {
+        allQuery(state?.view)
+          .then((data: SwapiResponse<People | Planet | Starship>) => {
+            const payload = setUpdatePayload(data);
+            return dispatch(updateDispatch(state?.view, payload));
           })
-        ),
+          .catch((err) => dispatch(displayGenericError()));
+      }
 
-        //populates people at state
-        dispatch(BaseActions.UpdatePeople(data?.results)),
-
-        //populates people to be displayed at UI
-        dispatch(BaseActions.UpdateDisplayedPeople(data?.results)),
-      ]);
+      if (state?.pageParam !== 0) {
+        byPageQuery(state?.view, state?.pageParam)
+          .then((data: SwapiResponse<People | Planet | Starship>) => {
+            return dispatch(
+              updateDispatch(state?.view, setUpdatePayload(data))
+            );
+          })
+          .catch((err) => dispatch(displayGenericError()));
+      }
+      
+      if (state?.idParam !== 0) {
+        byIdQuery(state?.view, state?.pageParam)
+          .then((data: SwapiResponse<People | Planet | Starship>) => {
+            return dispatch(
+              updateDispatch(state?.view, setUpdatePayload(data))
+            );
+          })
+          .catch((err) => dispatch(displayGenericError()));
+      }
     }
-  };
-
-  const getPeopleByParams = useCallback(() => {
-    if (state?.view === ROUTES.PEOPLE && state?.pageParam !== 0) {
-      return getAllPeople()
-        .then((data) => successHandler(data))
-        .catch((err: any) => {
-          //set error to be displayed at UI
-          dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
-        });
-    } else {
-      return getPeopleByPage(state?.pageParam)
-        .then((data) => successHandler(data))
-        .catch((err: any) => {
-          //set error to be displayed at UI
-          dispatch(BaseActions.SetError(MESSAGE.GENERIC_API_ERROR));
-        });
-    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.view, state?.pageParam]);
 
   useEffect(() => {
-    getPeopleByParams();
-  }, [getPeopleByParams]);
+    if (viewPath) dispatch(setView(viewPath));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewPath]);
+
+  useEffect(() => {
+    fetchDataByPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.view, state?.pageParam]);
 
   return (
     <QueryContext.Provider value={value}>{children}</QueryContext.Provider>

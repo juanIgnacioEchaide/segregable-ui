@@ -1,13 +1,16 @@
 import React from "react";
 import "./App.css";
-import { QueryProvider } from "./context/query/QueryProvider";
-import { Search } from "./modules";
+import { AppRouter } from "./AppRouter";
+import { Layout } from "./components/layout/Layout";
+import { Providers } from "./context/Providers";
 
 function App() {
   return (
-    <QueryProvider>
-      <Search />
-    </QueryProvider>
+    <Providers>
+      <Layout>
+        <AppRouter />
+      </Layout>
+    </Providers>
   );
 }
 
