@@ -19,7 +19,7 @@ const DrawerSearchItems = () => {
       return setItems(() => {
         return Selectables?.map((i) => ({ ...i, selected: false }));
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -27,7 +27,7 @@ const DrawerSearchItems = () => {
       {Selectables?.map(
         (i) =>
           i.entity !== StateEntity.Search && (
-            <Button size={"xs"} width="50px">
+            <Button size={"xs"} width="40px" marginLeft={"5px"}>
               <p style={{ fontSize: "10px" }}>{i.entity}</p>
             </Button>
           )
@@ -87,6 +87,7 @@ const DrawerLinks = ({
             lineHeight: "50px",
             justifyContent: "center",
             paddingLeft: "15%",
+            cursor: "pointer",
           }}
         >
           {i.entity}
@@ -100,7 +101,10 @@ const SearchMenu = ({ setOpen }: any) => {
   return (
     <>
       <SearchInput />
-      <div style={{ padding: "20px" }} onClick={() => setOpen(false)}>
+      <div
+        style={{ padding: "20px", cursor: "pointer" }}
+        onClick={() => setOpen(false)}
+      >
         <ArrowLeftIcon />
       </div>
     </>
