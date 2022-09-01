@@ -1,7 +1,7 @@
 import React from "react"
 import { ActionType, SIZE } from "../constants"
-import { UIActionType } from "../constants/context"
-import { VIEW } from "../constants/uri"
+import { StateEntity, UIActionType } from "../constants/context"
+import { ROUTES, VIEW } from "../constants/uri"
 
 type People = {
     name: string
@@ -204,6 +204,12 @@ type ViewStateLogic = {
 
 type ViewQueries = Record<VIEW | any, ViewStateLogic>
 
+type Selectable = {
+    selected: boolean, 
+    entity: StateEntity, 
+    uri: ROUTES
+}
+
 export type {
     People,
     Planet,
@@ -220,5 +226,6 @@ export type {
     PagesPayload,
     ContextValue,
     ViewStateLogic,
-    ViewQueries
+    ViewQueries,
+    Selectable
 }

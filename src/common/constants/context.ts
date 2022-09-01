@@ -1,4 +1,4 @@
-import { BaseState, ContextValue, UIState } from "../models/entities";
+import { BaseState, ContextValue, Selectable, UIState } from "../models/entities";
 import { SIZE } from "./media";
 import { ROUTES, VIEW } from "./uri";
 
@@ -119,7 +119,7 @@ const ViewByLocation: Record<ROUTES, VIEW> = {
     [ROUTES.SEARCH]: VIEW.SEARCH
 }
 
-const Selectables = [
+const Selectables: Selectable[] = [
     { selected: false, entity: StateEntity.People, uri: ROUTES.PEOPLE },
     { selected: false, entity: StateEntity.Films, uri: ROUTES.FILMS },
     { selected: false, entity: StateEntity.Planets, uri: ROUTES.PLANETS },

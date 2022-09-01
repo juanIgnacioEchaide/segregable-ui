@@ -81,19 +81,25 @@ const DrawerLinks = ({
       }}
     >
       {Selectables?.map((i: any) => (
-        <p
-          onClick={() => handleOpen(i)}
-          style={{
-            lineHeight: "50px",
-            justifyContent: "center",
-            paddingLeft: "15%",
-            cursor: "pointer",
-          }}
-        >
-          {i.entity}
-        </p>
+        <DrawerLinkItem handleOpen={handleOpen} item={i} />
       ))}
     </div>
+  );
+};
+
+const DrawerLinkItem = ({ item, handleOpen }: any) => {
+  return (
+    <p
+      onClick={() => handleOpen(item)}
+      style={{
+        lineHeight: "50px",
+        justifyContent: "center",
+        paddingLeft: "15%",
+        cursor: "pointer",
+      }}
+    >
+      {item.entity}
+    </p>
   );
 };
 
