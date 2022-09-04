@@ -25,13 +25,13 @@ enum ActionType {
 }
 
 enum StateEntity {
-    People = 'people',
-    Planets = 'planets',
-    Starship = 'starship',
-    Vehicles = 'vehicles',
-    Species = 'species',
-    Films = 'films',
-    Search = 'search'
+    People = 'People',
+    Planets = 'Planets',
+    Starship = 'Starship',
+    Vehicles = 'Vehicles',
+    Species = 'Species',
+    Films = 'Films',
+    Search = 'Free search'
 }
 
 const ItemKinds = [
@@ -120,13 +120,13 @@ const ViewByLocation: Record<ROUTES, VIEW> = {
 }
 
 const Selectables: Selectable[] = [
-    { selected: false, entity: StateEntity.People, uri: ROUTES.PEOPLE },
-    { selected: false, entity: StateEntity.Films, uri: ROUTES.FILMS },
-    { selected: false, entity: StateEntity.Planets, uri: ROUTES.PLANETS },
-    { selected: false, entity: StateEntity.Species, uri: ROUTES.SPECIES },
-    { selected: false, entity: StateEntity.Starship, uri: ROUTES.STARSHIP },
-    { selected: false, entity: StateEntity.Vehicles, uri: ROUTES.VEHICLES },
-    { selected: false, entity: StateEntity.Search, uri: ROUTES.SEARCH },
+    { selected: false, entity: StateEntity.People, view: VIEW.PEOPLE, uri: ROUTES.PEOPLE },
+    { selected: false, entity: StateEntity.Films, view: VIEW.FILMS, uri: ROUTES.FILMS },
+    { selected: false, entity: StateEntity.Planets, view: VIEW.PLANETS, uri: ROUTES.PLANETS },
+    { selected: false, entity: StateEntity.Species, view: VIEW.SPECIES, uri: ROUTES.SPECIES },
+    { selected: false, entity: StateEntity.Starship, view: VIEW.STARSHIP, uri: ROUTES.STARSHIP },
+    { selected: false, entity: StateEntity.Vehicles, view: VIEW.VEHICLES, uri: ROUTES.VEHICLES },
+    { selected: false, entity: StateEntity.Search, view: VIEW.SEARCH, uri: ROUTES.SEARCH },
 ];
 
 const INITIAL_PAGE = 1

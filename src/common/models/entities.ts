@@ -207,6 +207,7 @@ type ViewQueries = Record<VIEW | any, ViewStateLogic>
 type Selectable = {
     selected: boolean, 
     entity: StateEntity, 
+    view: VIEW,
     uri: ROUTES
 }
 

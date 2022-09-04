@@ -9,6 +9,7 @@ const UseQueryContext = () => {
   }
 
   return {
+    view: state?.view,
     people: state?.people,
     planets: state?.planets,
     vehicles: state?.vehicles,

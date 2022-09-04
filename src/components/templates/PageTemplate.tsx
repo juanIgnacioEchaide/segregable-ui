@@ -1,4 +1,4 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem} from "@chakra-ui/react";
 
 const PageTemplate = (): JSX.Element => {
   return (
@@ -11,20 +11,10 @@ const PageTemplate = (): JSX.Element => {
     >
       <GridItem
         colSpan={5}
-        rowSpan={1}
+        rowSpan={2}
         bg="tomato"
         placeItems={"center"}
-        children={
-          <div
-            style={{
-              display: "flex",
-              fontSize: "30px",
-              paddingLeft: "25%"
-            }}
-          >
-            Films
-          </div>
-        }
+      /*   children={<Carousel />} */
       />
       <GridItem colSpan={5} h="100px" bg="papayawhip" />
       <GridItem colSpan={5} bg="papayawhip" />
