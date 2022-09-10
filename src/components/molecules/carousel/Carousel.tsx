@@ -1,52 +1,32 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
-import { IconButton, Box } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
-/* const Carousel = () => {
+const ArrowsContainer = ({ children }: any) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        placeItems: "center",
-        placeContent: "center",
-        fontSize: "30px",
-        width: "100%",
-        height: "100%",
-      }}
-    >
-      <IconButton aria-label="Search database" icon={<ArrowLeftIcon />} />
-      <Box
-        as="span"
-        ml="2"
-        background={"gray.600"}
-        fontSize="sm"
-        padding={"20px"}
+    <>
+      <IconButton
+        aria-label="Search database"
+        icon={<ArrowLeftIcon />}
+        h={"20px"}
+      />
+      <motion.div
+        className="box"
+        animate={{ x: 0, y: 0 }}
+        transition={{ type: "spring" }}
       >
-        Carousel
-      </Box>
-      <Box
-        as="span"
-        ml="2"
-        background={"gray.600"}
-        fontSize="sm"
-        padding={"20px"}
-      >
-        Carousel
-      </Box>
-      <Box
-        as="span"
-        ml="2"
-        background={"gray.600"}
-        fontSize="sm"
-        padding={"20px"}
-      >
-        Carousel
-      </Box>
-      <IconButton aria-label="Search database" icon={<ArrowRightIcon />} />
-    </div>
+        {children}
+      </motion.div>
+      <IconButton
+        aria-label="Search database"
+        icon={<ArrowRightIcon />}
+        h={"20px"}
+      />
+    </>
   );
-}; */
+};
 
-const Carousel = () => {
+const PageIndex = ({ pageNum }: any) => {
   return (
     <div
       style={{
@@ -59,29 +39,66 @@ const Carousel = () => {
         height: "100%",
       }}
     >
-      <IconButton
-        aria-label="Search database"
-        icon={<ArrowLeftIcon />}
-        h={"100px"}
-      />
-      <div
+      <p
         style={{
-          display: "flex",
-          backgroundColor: "black",
-          height:"20vh",
-          justifyContent: "space-between",
-          alignItems: "center",
+          paddingRight: "5px",
         }}
       >
-        carousel
-      </div>
-
-      <IconButton
-        aria-label="Search database"
-        icon={<ArrowRightIcon />}
-        h={"100px"}
-      />
+        Page:
+      </p>
+      {pageNum}
     </div>
   );
 };
-export { Carousel };
+
+const DisplayedItem = ({ displayedData }: any) => {
+  return <div>{displayedData}</div>;
+};
+
+const CarouselGrid = ({ pageNum, displayedData }: any) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "30px",
+        fontSize: "30px",
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "30px",
+          fontSize: "30px",
+          width: "30%",
+          height: "100%",
+        }}
+      >
+        <ArrowsContainer children={<PageIndex pageNum={"4"} />} />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "30px",
+          fontSize: "30px",
+          width: "70%",
+          height: "100%",
+        }}
+      >
+        <ArrowsContainer
+          children={
+            <DisplayedItem displayedData={"Episode IV. New Hope Risin'"} />
+          }
+        />
+      </div>
+    </div>
+  );
+};
+export { CarouselGrid };

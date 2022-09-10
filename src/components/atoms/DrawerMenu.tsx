@@ -87,7 +87,7 @@ const SearchInput = () => {
   }, [viewScene, stringParam /* , searchQuery */]);
 
   return (
-    <Box justifyContent={"center"} alignItems={"center"}>
+    <Box justifyContent={"center"} alignItems={"center"} marginTop={"30px"}>
       <div
         style={{
           paddingBottom: "10px",
@@ -96,10 +96,10 @@ const SearchInput = () => {
           flexDirection: "column",
         }}
       >
-        <FormLabel htmlFor="earch_param">Search</FormLabel>
-        <DrawerSearchItems setViewScene={setViewScene}/>
+        <FormLabel htmlFor="earch_param">Free Search by item</FormLabel>
+        <DrawerSearchItems setViewScene={setViewScene} marginTop={"35px"}/>
       </div>
-      <InputGroup>
+      <InputGroup marginTop={"15px"}>
         <Input
           type="text"
           id="search_param"
@@ -156,15 +156,15 @@ const DrawerLinkItem = ({ item, handleOpen }: any) => {
 
 const SearchMenu = ({ setOpen }: any) => {
   return (
-    <>
-      <SearchInput />
+    <div>
+      <SearchInput/>
       <div
         style={{ padding: "20px", cursor: "pointer" }}
         onClick={() => setOpen(false)}
       >
         <ArrowLeftIcon />
       </div>
-    </>
+    </div>
   );
 };
 export { SearchInput, DrawerLinks, SearchMenu, DrawerLinkItem };
