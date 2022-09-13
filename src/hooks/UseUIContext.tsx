@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UIContext } from "../context/UI/UIProvider";
 
-const UseQueryContext = () => {
+const UseUIContext = () => {
   const { state, dispatch } = useContext(UIContext);
 
   if ({ state, dispatch } === undefined) {
@@ -19,4 +19,4 @@ const UseQueryContext = () => {
   };
 };
 
-export default UseQueryContext;
+export default UseUIContext;

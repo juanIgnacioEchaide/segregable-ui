@@ -60,9 +60,14 @@ const isMobile = (view: SIZE) => {
     return view === SIZE.MOBILE
 }
 
+const isDesktop = (view: SIZE) => {
+    return view === SIZE.MOBILE
+}
+
 const navigate = (route: ROUTES) => {
     return window.location.assign(route);
   };
+
   
 export {
     getPageFromUri,
@@ -71,5 +76,6 @@ export {
     updateAfterLoad,
     updateDisplayed,
     isMobile,
+    isDesktop,
     navigate,
 }

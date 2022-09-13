@@ -50,6 +50,7 @@ const UseQueryByView = () => {
         return getPeopleById(id);
       },
       searchQuery: (stringParam: string) => {
+        console.log("llega a queryByView");
         return searchPeople(stringParam);
       },
       updateFn: (data: UpdatePayload<People>): Action => {
@@ -156,6 +157,7 @@ const UseQueryByView = () => {
   };
 
   const searchQuery = (viewScene: VIEW, stringParam: string) => {
+    console.log("llega a searchQuery");
     return queryByView[viewScene]?.searchQuery(stringParam);
   };
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ArrowLeftIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   InputGroup,
@@ -10,24 +11,62 @@ import {
 import { useEffect, useState } from "react";
 import { DrawerLinksProps, isMobile } from "../../common";
 import { Selectables, StateEntity } from "../../common/constants/context";
+import { VIEW } from "../../common/constants/uri";
+import { Selectable } from "../../common/models/entities";
+import { UseQueryByView } from "../../hooks/UseQueryByView";
 
-const DrawerSearchItems = () => {
+const DrawerSearchItems = ({ setViewScene }: any) => {
   const [items, setItems] = useState<any[]>([]);
+  const borderSelected = "2.5px solid grey";
+
+  const populateWithSelectables = () => {
+    if (Selectables?.length)
+      setItems(() => {
+        return Selectables?.map((item: Selectable) => ({
+          ...item,
+          selected: item.entity === StateEntity.People ? true : false,
+        }));
+      });
+  };
+
+  const selectItemByIndex = (idx: number) => {
+    setItems(() => {
+      return items?.map((item: Selectable, index: number) => {
+        if (index === idx && !item?.selected) {
+          return {
+            ...item,
+            selected: true,
+          };
+        } else {
+          return {
+            ...item,
+            selected: false,
+          };
+        }
+      });
+    });
+  };
 
   useEffect(() => {
-    if (items?.length)
-      return setItems(() => {
-        return Selectables?.map((i) => ({ ...i, selected: false }));
-      });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    populateWithSelectables();
   }, []);
 
   return (
     <div>
-      {Selectables?.map(
-        (i) =>
+      {items?.map(
+        (i, idx) =>
           i.entity !== StateEntity.Search && (
-            <Button size={"xs"} width="50px">
+            <Button
+              onClick={() => {
+                selectItemByIndex(idx);
+                setViewScene(i.view);
+              }}
+              key={i?.entity}
+              size={"xs"}
+              width="40px"
+              marginLeft={"5px"}
+              border={i.selected ? borderSelected : "none"}
+            >
               <p style={{ fontSize: "10px" }}>{i.entity}</p>
             </Button>
           )
@@ -37,8 +76,18 @@ const DrawerSearchItems = () => {
 };
 
 const SearchInput = () => {
+  const { searchQuery } = UseQueryByView();
+  const [viewScene, setViewScene] = useState<VIEW>(VIEW.DEFAULT);
+  const [stringParam, setStringParam] = useState<string>("");
+
+  useEffect(() => {
+    if (stringParam) {
+      searchQuery(viewScene, stringParam);
+    }
+  }, [viewScene, stringParam /* , searchQuery */]);
+
   return (
-    <Box justifyContent={"center"} alignItems={"center"}>
+    <Box justifyContent={"center"} alignItems={"center"} marginTop={"30px"}>
       <div
         style={{
           paddingBottom: "10px",
@@ -47,14 +96,15 @@ const SearchInput = () => {
           flexDirection: "column",
         }}
       >
-        <FormLabel htmlFor="earch_param">Search</FormLabel>
-        <DrawerSearchItems />
+        <FormLabel htmlFor="earch_param">Free Search by item</FormLabel>
+        <DrawerSearchItems setViewScene={setViewScene} marginTop={"35px"}/>
       </div>
-      <InputGroup>
+      <InputGroup marginTop={"15px"}>
         <Input
           type="text"
           id="search_param"
           placeholder="choose the kind of item"
+          onChange={(e) => setStringParam(e.target.value)}
         />
         <IconButton aria-label="Search database" icon={<SearchIcon />} />
       </InputGroup>
@@ -81,29 +131,40 @@ const DrawerLinks = ({
       }}
     >
       {Selectables?.map((i: any) => (
-        <p
-          onClick={() => handleOpen(i)}
-          style={{
-            lineHeight: "50px",
-            justifyContent: "center",
-            paddingLeft: "15%",
-          }}
-        >
-          {i.entity}
-        </p>
+        <DrawerLinkItem handleOpen={handleOpen} item={i} key={i.entity} />
       ))}
     </div>
   );
 };
 
-const SearchMenu = ({ setOpen }: any) => {
+const DrawerLinkItem = ({ item, handleOpen }: any) => {
   return (
-    <>
-      <SearchInput />
-      <div style={{ padding: "20px" }} onClick={() => setOpen(false)}>
-        <ArrowLeftIcon />
-      </div>
-    </>
+    <p
+      onClick={() => handleOpen(item)}
+      style={{
+        lineHeight: "50px",
+        justifyContent: "center",
+        paddingLeft: "15%",
+        cursor: "pointer",
+        fontWeight: item.entity === StateEntity.Search ? 1000 : 450,
+      }}
+    >
+      {item.entity}
+    </p>
   );
 };
-export { SearchInput, DrawerLinks, SearchMenu };
+
+const SearchMenu = ({ setOpen }: any) => {
+  return (
+    <div>
+      <SearchInput/>
+      <div
+        style={{ padding: "20px", cursor: "pointer" }}
+        onClick={() => setOpen(false)}
+      >
+        <ArrowLeftIcon />
+      </div>
+    </div>
+  );
+};
+export { SearchInput, DrawerLinks, SearchMenu, DrawerLinkItem };
