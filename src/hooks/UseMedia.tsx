@@ -9,18 +9,20 @@ const UseMedia = () => {
     let desktopSize = window.matchMedia("(min-width: 768px)");
 
     if (mobileSize.matches) {
-        setSize(SIZE.MOBILE);
-    }
-    if (desktopSize.matches) {
-        setSize(SIZE.DESKTOP);
+      setSize(SIZE.MOBILE);
+    } else {
+      setSize(SIZE.DESKTOP);
     }
   };
 
   useEffect(() => {
     matchSize();
-    window.onresize = () => {
+    window.addEventListener("onresize", () => {
       matchSize();
-    };
+    });
+    return () => {
+      window.removeEventListener("onresize", matchSize)
+    }
   }, [size]);
 
   return size;

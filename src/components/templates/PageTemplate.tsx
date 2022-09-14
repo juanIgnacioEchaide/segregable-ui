@@ -4,7 +4,7 @@ import {
   DetailsDisplayGrid,
 } from "../molecules/carousel/Carousel";
 
-const PageTemplate = (): JSX.Element => {
+const PageTemplate = ({viewport}:any): JSX.Element => {
   return (
     <Grid
       h="100%"
@@ -16,16 +16,17 @@ const PageTemplate = (): JSX.Element => {
       <GridItem
         colSpan={5}
         rowSpan={2}
+        h={"100px"}
         bg="tomato"
         placeItems={"center"}
-        children={<NavigationGrid />}
+        children={<NavigationGrid viewport={viewport}/>}
       />
       <GridItem
         colSpan={5}
         rowSpan={6}
         bg="tomato"
         placeItems={"center"}
-        children={<DetailsDisplayGrid />}
+        children={<DetailsDisplayGrid viewport={viewport}/>}
       />
     </Grid>
   );
