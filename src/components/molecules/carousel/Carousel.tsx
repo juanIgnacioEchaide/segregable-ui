@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { isMobile } from "../../../common";
 import { SIZE } from "../../../common/constants";
 import { VIEW } from "../../../common/constants/uri";
+import { SearchMenu } from "../../atoms/DrawerMenu";
 
 const ArrowsContainer = ({ children }: any) => {
   return (
@@ -123,6 +124,7 @@ const NavigationGrid = ({ pageNum, displayedData, viewport }: any) => {
             <DisplayedItem displayedData={displayedData} viewport={viewport} />
           }
         />
+        <SearchMenu withItems={false} withGoBack={false}/>
       </div>
     </div>
   );
@@ -149,7 +151,7 @@ const DetailsDisplayGrid = ({ view, viewport }: any) => {
           justifyContent: "space-around",
           alignItems: "center",
           padding: "30px",
-          fontSize: viewport === SIZE.MOBILE? "20px" : "30px",
+          fontSize: viewport === SIZE.MOBILE ? "20px" : "30px",
           width: "30%",
           height: "100%",
         }}

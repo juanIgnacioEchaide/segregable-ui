@@ -4,11 +4,14 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import UseQueryContext from "../../hooks/UseQueryContext";
 import UseUIContext from "../../hooks/UseUIContext";
 import { isMobile } from "../../common";
+import { useEffect, useMemo, useState } from "react";
+import { VIEW } from "../../common/constants/uri";
 
 const TopBanner = ({ isOpen, onOpen, onClose }: any): JSX.Element => {
   const handleOpen = () => {
     return !isOpen ? onOpen() : onClose();
   };
+  const [viewTitle, setViewTitle] = useState<VIEW>(VIEW.DEFAULT);
   const { view } = UseQueryContext();
   const { viewport } = UseUIContext();
 
@@ -36,7 +39,7 @@ const TopBanner = ({ isOpen, onOpen, onClose }: any): JSX.Element => {
         </div>
         <p
           style={{
-            marginLeft: isMobile(viewport) ? "15px" : "100px",
+            marginLeft: /* isMobile(viewport) ? */ "15px" /* : "100px" */,
           }}
         >
           {view}

@@ -75,7 +75,7 @@ const DrawerSearchItems = ({ setViewScene }: any) => {
   );
 };
 
-const SearchInput = () => {
+const SearchInput = ({ withItems }: any) => {
   const { searchQuery } = UseQueryByView();
   const [viewScene, setViewScene] = useState<VIEW>(VIEW.DEFAULT);
   const [stringParam, setStringParam] = useState<string>("");
@@ -96,8 +96,12 @@ const SearchInput = () => {
           flexDirection: "column",
         }}
       >
-        <FormLabel htmlFor="earch_param">Free Search by item</FormLabel>
-        <DrawerSearchItems setViewScene={setViewScene} marginTop={"35px"}/>
+        {withItems && (
+          <>
+            <FormLabel htmlFor="earch_param">Free Search by item</FormLabel>
+            <DrawerSearchItems setViewScene={setViewScene} marginTop={"35px"} />
+          </>
+        )}
       </div>
       <InputGroup marginTop={"15px"}>
         <Input
@@ -154,15 +158,15 @@ const DrawerLinkItem = ({ item, handleOpen }: any) => {
   );
 };
 
-const SearchMenu = ({ setOpen }: any) => {
+const SearchMenu = ({ setOpen, withItems, withGoBack }: any) => {
   return (
     <div>
-      <SearchInput/>
+      <SearchInput withItems={withItems} />
       <div
         style={{ padding: "20px", cursor: "pointer" }}
         onClick={() => setOpen(false)}
       >
-        <ArrowLeftIcon />
+        {withGoBack && <ArrowLeftIcon />}
       </div>
     </div>
   );

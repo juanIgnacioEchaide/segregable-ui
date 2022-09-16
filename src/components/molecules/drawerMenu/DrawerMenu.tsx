@@ -40,7 +40,11 @@ const DrawerMenu = ({
         )}
         {searchModuleOpen && (
           <DrawerBody>
-            <SearchMenu setOpen={setsearchModuleOpen} />
+            <SearchMenu
+              setOpen={setsearchModuleOpen}
+              withItems={true}
+              withGoBack={true}
+            />
           </DrawerBody>
         )}
         <DrawerFooter borderTopWidth="1px" />
