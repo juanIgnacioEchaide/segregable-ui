@@ -2,17 +2,34 @@ import React, { RefObject } from "react"
 import { SIZE } from "../constants";
 import { VIEW } from "../constants/uri";
 
-type BaseProps = {
+type BaseBoxProps = {
   children?: any | any[];
   view: VIEW;
   size: string;
   theme: string;
-  height: string;
-  width: string;
-  bg: string;
+  h?: number;
+  w?: number;
+  fs?: number;
+  bg?: string;
+  column?: boolean;
+  row?: boolean;
+  rounded?: boolean;
+  p?: number;
+  pt?: number;
+  pb?: number;
+  pr?: number;
+  pl?: number;
+  m?: number;
+  mt?: number;
+  mr?: number;
+  ml?: number;
+  mb?: number;
+  mode?: string;
+  primary?: boolean;
+  secondary?: boolean;
 }
 
-interface MapItemsProps<T> extends BaseProps {
+interface MapItemsProps<T> extends BaseBoxProps {
   items: T | T[]
 }
 type DrawerMenuProps = {
@@ -27,4 +44,4 @@ type DrawerLinksProps = {
   size: SIZE;
 };
 
-export type { BaseProps, MapItemsProps, DrawerMenuProps, DrawerLinksProps }
+export type { BaseBoxProps, MapItemsProps, DrawerMenuProps, DrawerLinksProps }

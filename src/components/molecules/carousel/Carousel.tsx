@@ -1,10 +1,10 @@
-import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon, SearchIcon } from "@chakra-ui/icons";
 import { IconButton } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { isMobile } from "../../../common";
 import { SIZE } from "../../../common/constants";
 import { VIEW } from "../../../common/constants/uri";
-import { SearchMenu } from "../../atoms/DrawerMenu";
+import { SearchInput, SearchMenu } from "../../atoms/DrawerMenu";
 
 const ArrowsContainer = ({ children }: any) => {
   return (
@@ -68,15 +68,62 @@ const NavigationGrid = ({ pageNum, displayedData, viewport }: any) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
-          padding: "30px",
-          fontSize: "20px",
+          /*    padding: "30px", */
+          /*    fontSize: "20px", */
           width: "100%",
-          height: "100%",
+          height: "10vh",
         }}
       >
-        MOBILE
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "row",
+            alignItems: "center",
+            padding: "30px",
+            fontSize: "10px",
+            width: "100%",
+            /*  height: "100%", */
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexDirection: "row",
+              alignItems: "center",
+              padding: "30px",
+              fontSize: "17px",
+              width: "100%",
+              /*  height: "100%", */
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                flexDirection: "row",
+                alignItems: "center",
+                padding: "30px",
+                fontSize: "17px",
+                width: "100%",
+                /*  height: "100%", */
+              }}
+            >
+              <div>PAGE</div>
+              <div>
+                <ArrowLeftIcon />
+                <p> 4/8</p>
+                <ArrowRightIcon />
+              </div>
+            </div>
+          </div>
+          <div>
+            <IconButton aria-label="Search database" icon={<SearchIcon />} />
+          </div>
+        </div>
       </div>
     );
   }
@@ -124,7 +171,7 @@ const NavigationGrid = ({ pageNum, displayedData, viewport }: any) => {
             <DisplayedItem displayedData={displayedData} viewport={viewport} />
           }
         />
-        <SearchMenu withItems={false} withGoBack={false}/>
+        <SearchMenu withItems={false} withGoBack={false} />
       </div>
     </div>
   );
