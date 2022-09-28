@@ -87,7 +87,7 @@ const SearchInput = ({ withItems }: any) => {
   }, [viewScene, stringParam /* , searchQuery */]);
 
   return (
-    <Box justifyContent={"center"} alignItems={"center"} marginTop={"30px"}>
+    <Box justifyContent ={"center"} alignItems={"center"} marginTop={"30px"}>
       <div
         style={{
           paddingBottom: "10px",

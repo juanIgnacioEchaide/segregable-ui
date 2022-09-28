@@ -19,7 +19,7 @@ const BaseTemplate = ({ children, view, size, theme, bg }: any) => {
         size={size}
         theme={theme}
       >
-        <CarouselBox
+{/*         <CarouselBox
           view={view}
           size={size}
           theme={theme}
@@ -33,7 +33,7 @@ const BaseTemplate = ({ children, view, size, theme, bg }: any) => {
           view={view}
           size={size}
           theme={theme}
-        />
+        /> */}
       </ContentBox>
     </ContainerBox>
   );

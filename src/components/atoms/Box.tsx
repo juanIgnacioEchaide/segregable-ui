@@ -23,8 +23,15 @@ const BaseBox = ({
   ml,
   primary,
   secondary,
-  mode
+  mode,
+  alignCenter,
+  alignStart,
+  alignEnd,
+  alignBaseLine,
+  alignStrecht
 }: BaseBoxProps) => {
+  const positions = ["center", "flex-start", "flex-end", " baseline", "stretch"];
+
   const setFlexDir = (col: boolean | undefined, row: boolean | undefined) => {
     if (col && row) {
       return "column";
@@ -36,14 +43,24 @@ const BaseBox = ({
     return "column";
   };
 
+  const setAlignItems = () => {
+    if (alignCenter) return positions[0];
+    if (alignStart) return positions[1];
+    if (alignEnd) return positions[2];
+    if (alignBaseLine) return positions[3];
+    if (alignStrecht) return positions[4];
+    return positions[0];
+  };
+
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "space-between",
         flexDirection: setFlexDir(column, row),
-        alignItems: "center",
-        borderRadius: rounded ? "30%" : "0",
+        background: bg ? bg : "none",
+        alignItems: setAlignItems(),
+        borderRadius: rounded ? "7px" : "0",
         padding: p ? p : "none",
         paddingTop: p ? p : "none",
         paddingBottom: pb ? pb : "none",

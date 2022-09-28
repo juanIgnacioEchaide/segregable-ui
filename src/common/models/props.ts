@@ -3,10 +3,10 @@ import { SIZE } from "../constants";
 import { VIEW } from "../constants/uri";
 
 type BaseBoxProps = {
-  children?: any | any[];
-  view: VIEW;
-  size: string;
-  theme: string;
+  children: any | any[];
+  view?: VIEW;
+  size?: string;
+  theme?: string;
   h?: number;
   w?: number;
   fs?: number;
@@ -27,6 +27,11 @@ type BaseBoxProps = {
   mode?: string;
   primary?: boolean;
   secondary?: boolean;
+  alignCenter?: boolean;
+  alignStart?: boolean;
+  alignEnd?: boolean;
+  alignBaseLine?: boolean;
+  alignStrecht?: boolean;
 }
 
 interface MapItemsProps<T> extends BaseBoxProps {
