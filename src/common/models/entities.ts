@@ -205,10 +205,32 @@ type ViewStateLogic = {
 type ViewQueries = Record<VIEW | any, ViewStateLogic>
 
 type Selectable = {
-    selected: boolean, 
-    entity: StateEntity, 
+    selected: boolean,
+    entity: StateEntity,
     view: VIEW,
     uri: ROUTES
+}
+
+type BaseStyleSet = {
+    backgroundColor: string,
+    fontColor: string,
+    border: string,
+    fontFamily: string,
+    fontWeight: string,
+}
+
+type DialogStyleSet = {
+    acceptButton: BaseStyleSet
+    rejectButton: BaseStyleSet
+    thirdOption: BaseStyleSet
+}
+
+type Theme = {
+    primary: BaseStyleSet
+    secondary: BaseStyleSet
+    primaryDisabled: BaseStyleSet
+    secondaryDisabled: BaseStyleSet
+    buttons: DialogStyleSet
 }
 
 export type {
@@ -228,5 +250,7 @@ export type {
     ContextValue,
     ViewStateLogic,
     ViewQueries,
-    Selectable
+    Selectable,
+    BaseStyleSet,
+    Theme
 }

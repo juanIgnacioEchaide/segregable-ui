@@ -87,13 +87,23 @@ const defaultState: BaseState = {
     },
 }
 
-const defaultUIState: UIState = {
+const defaultUIState: any = {
     modalOn: false,
     modalTitle: '',
     modalMessage: '',
     modalImage: '',
     type: '',
-    viewport: SIZE.DEFAULT
+    loading: false,
+    viewport: SIZE.DEFAULT,
+    theme: {
+        primary: {
+            backgroundColor: '',
+            fontColor: '',
+            border: '',
+            fontFamily: '',
+            fontWeight: '',
+        }
+    }
 }
 
 const defaultUIContextValue: ContextValue<UIState> = {

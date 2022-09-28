@@ -105,7 +105,7 @@ const BaseBox = ({
         justifyContent: setJustifyContent(),
         alignItems: setAlignItems(),
         background: bg ? bg : none,
-        borderRadius: rounded ? "7px" : "0",
+        borderRadius: rounded ? "7px" : none,
         padding: p ? px(p) : none,
         paddingTop: pt ? px(pt) : none,
         paddingBottom: pb ? px(pb) : none,
