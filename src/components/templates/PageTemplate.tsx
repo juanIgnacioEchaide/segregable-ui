@@ -1,13 +1,14 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import { BaseBox } from "../atoms/Box";
-import {
-  NavigationGrid,
-  DetailsDisplayGrid,
-} from "../molecules/carousel/Carousel";
+import { DetailsDisplayGrid } from "../molecules/carousel/Carousel";
 
 const PageTemplate = ({ viewport }: any): JSX.Element => {
   const TestCompo = ({ children }: any) => {
-    return <BaseBox bg={"#eeee"} rounded pb={100}>{children}</BaseBox>;
+    return (
+      <BaseBox bg={"#eeee"} row justifySpaceBetween p={10}>
+        {children}
+      </BaseBox>
+    );
   };
 
   return (
@@ -24,7 +25,13 @@ const PageTemplate = ({ viewport }: any): JSX.Element => {
         h={"100px"}
         bg="tomato"
         placeItems={"center"}
-        children={<TestCompo><p>hola</p><p>chau</p><p>me fui</p></TestCompo>}
+        children={
+          <TestCompo>
+            <p>hola</p>
+            <p>chau</p>
+            <p>me fui</p>
+          </TestCompo>
+        }
       />
       <GridItem
         colSpan={5}

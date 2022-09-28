@@ -1,6 +1,5 @@
 import { BaseBoxProps } from "../../common/models/props";
-import { Box } from "@chakra-ui/react";
-import { SIZE } from "../../common/constants/media";
+import { useCallback } from "react";
 
 const BaseBox = ({
   children,
@@ -28,9 +27,16 @@ const BaseBox = ({
   alignStart,
   alignEnd,
   alignBaseLine,
-  alignStrecht
+  alignStrecht,
+  placeItems,
+  justifyStart,
+  justifyend,
+  justifycenter,
+  justifySpaceBetween,
+  justifySpaceAround,
+  justifySpaceEvenly,
 }: BaseBoxProps) => {
-  const positions = ["center", "flex-start", "flex-end", " baseline", "stretch"];
+  const none = "none";
 
   const setFlexDir = (col: boolean | undefined, row: boolean | undefined) => {
     if (col && row) {
@@ -43,37 +49,74 @@ const BaseBox = ({
     return "column";
   };
 
-  const setAlignItems = () => {
+  const setAlignItems = useCallback(() => {
+    const positions = [
+      "center",
+      "flex-start",
+      "flex-end",
+      " baseline",
+      "stretch",
+    ];
     if (alignCenter) return positions[0];
     if (alignStart) return positions[1];
     if (alignEnd) return positions[2];
     if (alignBaseLine) return positions[3];
     if (alignStrecht) return positions[4];
     return positions[0];
+  }, [alignBaseLine, alignCenter, alignEnd, alignStart, alignStrecht]);
+
+  const setJustifyContent = useCallback(() => {
+    const justifications = [
+      "flex-start",
+      "flex-end",
+      "center",
+      "space-between",
+      "space-around",
+      "space-evenly",
+    ];
+    if (justifyStart) return justifications[0];
+    if (justifyend) return justifications[1];
+    if (justifycenter) return justifications[2];
+    if (justifySpaceBetween) return justifications[3];
+    if (justifySpaceAround) return justifications[4];
+    if (justifySpaceEvenly) return justifications[5];
+    return justifications[0];
+  }, [
+    justifySpaceAround,
+    justifySpaceBetween,
+    justifySpaceEvenly,
+    justifyStart,
+    justifycenter,
+    justifyend,
+  ]);
+
+  const px = (val: any) => {
+    return `${val?.toString()}px`;
   };
 
   return (
     <div
       style={{
         display: "flex",
-        justifyContent: "space-between",
-        flexDirection: setFlexDir(column, row),
-        background: bg ? bg : "none",
-        alignItems: setAlignItems(),
-        borderRadius: rounded ? "7px" : "0",
-        padding: p ? p : "none",
-        paddingTop: p ? p : "none",
-        paddingBottom: pb ? pb : "none",
-        paddingLeft: pl ? pl : "none",
-        paddingRight: pr ? p : "none",
-        margin: m ? m : "none",
-        marginTop: mt ? mt : "none",
-        marginBottom: mb ? mb : "none",
-        marginLeft: ml ? ml : "none",
-        marginRight: mr ? mr : "none",
-        fontSize: `${fs?.toString()}px`,
         width: `${w?.toString()}vw`,
         height: `${h?.toString()}vh`,
+        flexDirection: setFlexDir(column, row),
+        placeItems: placeItems ? placeItems : none,
+        justifyContent: setJustifyContent(),
+        alignItems: setAlignItems(),
+        background: bg ? bg : none,
+        borderRadius: rounded ? "7px" : "0",
+        padding: p ? px(p) : none,
+        paddingTop: pt ? px(pt) : none,
+        paddingBottom: pb ? px(pb) : none,
+        paddingLeft: pl ? px(pl) : none,
+        paddingRight: pr ? px(p) : none,
+        margin: m ? px(m) : none,
+        marginTop: mt ? px(mt) : none,
+        marginBottom: mb ? px(mb) : none,
+        marginLeft: ml ? px(ml) : none,
+        marginRight: mr ? px(mr) : none,
+        fontSize: px(fs),
       }}
     >
       {children}

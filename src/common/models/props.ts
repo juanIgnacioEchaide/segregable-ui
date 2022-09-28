@@ -32,6 +32,13 @@ type BaseBoxProps = {
   alignEnd?: boolean;
   alignBaseLine?: boolean;
   alignStrecht?: boolean;
+  placeItems?: string;
+  justifyStart?: boolean;
+  justifyend?: boolean;
+  justifycenter?: boolean;
+  justifySpaceBetween?: boolean;
+  justifySpaceAround?: boolean;
+  justifySpaceEvenly?: boolean;
 }
 
 interface MapItemsProps<T> extends BaseBoxProps {
