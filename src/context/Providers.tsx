@@ -4,6 +4,7 @@ import { QueryProvider } from "./query/QueryProvider";
 import { UIProvider } from "./UI/UIProvider";
 
 const Providers = ({ children }: any): JSX.Element => {
+  
   return (
     <QueryProvider>
       <UIProvider>

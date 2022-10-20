@@ -20,7 +20,8 @@ import {
 import { getLocationPath, setUpdatePayload } from "../../common/utils/helpers";
 import { UseQueryByView } from "../../hooks/UseQueryByView";
 
-const QueryContext = createContext<ContextValue<BaseState>>(defaultContextValue);
+const QueryContext =
+  createContext<ContextValue<BaseState>>(defaultContextValue);
 
 const QueryProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(BaseReducer, defaultState);
@@ -57,7 +58,7 @@ const QueryProvider = ({ children }: any) => {
           })
           .catch((err) => dispatch(displayGenericError()));
       }
-      
+
       if (state?.idParam !== 0) {
         byIdQuery(state?.view, state?.pageParam)
           .then((data: SwapiResponse<People | Planet | Starship>) => {
@@ -75,6 +76,12 @@ const QueryProvider = ({ children }: any) => {
     if (viewPath) dispatch(setView(viewPath));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewPath]);
+
+  useEffect(() => {
+    fetchDataByPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.view, state?.pageParam]);
+
 
   useEffect(() => {
     fetchDataByPage();

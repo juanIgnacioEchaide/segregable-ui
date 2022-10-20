@@ -4,7 +4,7 @@ import { QueryContext } from "../context/query/QueryProvider";
 const UseQueryContext = () => {
   const { state, dispatch } = useContext(QueryContext);
 
-  if ({ state, dispatch } === undefined) {
+  if (state === undefined) {
     throw new Error("context is unaccesible");
   }
 

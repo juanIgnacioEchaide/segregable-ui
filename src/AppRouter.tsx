@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./common/constants";
 import { VIEW } from "./common/constants/uri";
+import { QueryContext } from "./context/query/QueryProvider";
 import Films from "./pages/films/Films";
 import Home from "./pages/home/Home";
 import People from "./pages/people/People";
@@ -22,6 +23,7 @@ export const RoutesStack = [
 ];
 
 const AppRouter = () => {
+
   return (
     <Router>
       <Routes>

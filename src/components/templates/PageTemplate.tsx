@@ -3,6 +3,8 @@ import { BaseBox } from "../atoms/Box";
 import { DetailsDisplayGrid } from "../molecules/carousel/Carousel";
 
 const PageTemplate = ({ viewport }: any): JSX.Element => {
+
+  
   const TestCompo = ({ children }: any) => {
     return (
       <BaseBox bg={"#eeee"} row justifySpaceBetween p={10}>

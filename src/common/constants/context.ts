@@ -25,12 +25,12 @@ enum ActionType {
 }
 
 enum StateEntity {
-    People = 'People',
-    Planets = 'Planets',
-    Starship = 'Starship',
-    Vehicles = 'Vehicles',
-    Species = 'Species',
-    Films = 'Films',
+    People = 'people',
+    Planets = 'planets',
+    Starship = 'starship',
+    Vehicles = 'vehicles',
+    Species = 'species',
+    Films = 'films',
     Search = 'Free search'
 }
 
