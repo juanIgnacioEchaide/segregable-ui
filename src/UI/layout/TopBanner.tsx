@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import UseQueryContext from "../../hooks/UseQueryContext";
 import { VIEW } from "../../common/constants/uri";

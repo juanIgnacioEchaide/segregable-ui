@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { AppRouter } from "./AppRouter";
-import { Layout } from "./components/layout/Layout";
+import { Layout } from "./UI/layout/Layout";
 import { QueryProvider } from "./context/query/QueryProvider";
 
 function App() {
