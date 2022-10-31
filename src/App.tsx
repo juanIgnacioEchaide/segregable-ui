@@ -2,15 +2,15 @@ import React from "react";
 import "./App.css";
 import { AppRouter } from "./AppRouter";
 import { Layout } from "./components/layout/Layout";
-import { Providers } from "./context/Providers";
+import { QueryProvider } from "./context/query/QueryProvider";
 
 function App() {
   return (
-    <Providers>
+    <QueryProvider>
       <Layout>
         <AppRouter />
       </Layout>
-    </Providers>
+    </QueryProvider>
   );
 }
 

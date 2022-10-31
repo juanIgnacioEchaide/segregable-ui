@@ -23,19 +23,19 @@ const api = {
         },
     },
     planets: {
-        getAll: (): Promise<AxiosResponse<SwapiResponse<any>>> => {
+        getAll: (): Promise<AxiosResponse<SwapiResponse<Planet>>> => {
             const data = apiClient.get(URI.PLANET);
             return data
         },
-        getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<any>>> => {
+        getByPage: (page: string | number): Promise<AxiosResponse<SwapiResponse<Planet>>> => {
             const data = apiClient.get(`${URI.PLANET}/?page=${page}`);
             return data
         },
-        getById: (id: number): Promise<AxiosResponse<SwapiResponse<any>>>  => {
+        getById: (id: number): Promise<AxiosResponse<SwapiResponse<Planet>>>  => {
             const data = apiClient.get(`${URI.PLANET}/${id}`);
             return data
         },
-        search: (params: string ): Promise<AxiosResponse<SwapiResponse<People>>> => {
+        search: (params: string ): Promise<AxiosResponse<SwapiResponse<Planet>>> => {
             const data = apiClient.get(`${URI.PLANET}/?search=${params}`);
             return data
         },
