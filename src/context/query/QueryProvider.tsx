@@ -80,13 +80,7 @@ const QueryProvider = ({ children }: any) => {
   useEffect(() => {
     fetchDataByPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.view, state?.pageParam]);
-
-
-  useEffect(() => {
-    fetchDataByPage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.view, state?.pageParam]);
+  }, [state?.view, state?.pageParam])
 
   return (
     <QueryContext.Provider value={value}>{children}</QueryContext.Provider>
