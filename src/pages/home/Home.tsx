@@ -1,5 +1,15 @@
-const Home = (): JSX.Element => {
-  return <div>HOME SEGREGABLE UI</div>;
-};
+import { Grid } from '../../UI/layout/Grid'
 
-export default Home;
+const Home = (): JSX.Element => {
+  return (
+    <Grid
+      nav={undefined}
+      main={undefined}
+      details={undefined}
+      side={undefined}
+      footer={undefined}
+    />
+  )
+}
+
+export default Home

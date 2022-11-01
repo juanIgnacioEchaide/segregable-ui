@@ -44,16 +44,32 @@ type BaseBoxProps = {
 interface MapItemsProps<T> extends BaseBoxProps {
   items: T | T[]
 }
+
 type DrawerMenuProps = {
   isOpen: boolean,
   firstField?: RefObject<any>,
   onOpen: () => void,
   onClose: () => void,
 }
+
 type DrawerLinksProps = {
   searchModuleOpen: boolean;
   setsearchModuleOpen: React.Dispatch<React.SetStateAction<boolean>>;
   size: SIZE;
 };
 
-export type { BaseBoxProps, MapItemsProps, DrawerMenuProps, DrawerLinksProps }
+type GridTemplateProps = {
+  nav: any,
+  main: any,
+  details: any,
+  side: any,
+  footer: any,  
+};
+
+export type { 
+  BaseBoxProps, 
+  MapItemsProps, 
+  DrawerMenuProps, 
+  DrawerLinksProps, 
+  GridTemplateProps 
+}
