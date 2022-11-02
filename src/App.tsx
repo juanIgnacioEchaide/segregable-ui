@@ -1,14 +1,14 @@
-import React from "react";
-import "./App.css";
-import { AppRouter } from "./AppRouter";
-import { QueryProvider } from "./context/query/QueryProvider";
+import React from 'react'
+import './App.css'
+import { AppRouter } from './AppRouter'
+import { QueryProvider } from './context/query/QueryProvider'
 
 function App() {
   return (
     <QueryProvider>
-        <AppRouter />
+      <AppRouter />
     </QueryProvider>
-  );
+  )
 }
 
-export default App;
+export default App

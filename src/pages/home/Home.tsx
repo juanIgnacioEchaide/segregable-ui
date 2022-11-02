@@ -1,12 +1,17 @@
-import { Grid } from '../../UI/layout/Grid'
+import { useContext, useEffect, useState } from 'react'
+import { Grid } from '../../UI/molecules/Grid'
+import { SideMenu } from '../../UI/molecules/SideMenu'
+import { QueryContext } from '../../context/query/QueryProvider'
 
 const Home = (): JSX.Element => {
+  const { state, dispatch } = useContext(QueryContext)
+
   return (
     <Grid
-      nav={undefined}
+      nav={<div>swapi</div>}
       main={undefined}
-      details={undefined}
-      side={undefined}
+      details={<p>DETALLE</p>}
+      side={<SideMenu />}
       footer={undefined}
     />
   )

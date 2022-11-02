@@ -4,15 +4,15 @@ import { ROUTES } from "./common/constants";
 import { VIEW } from "./common/constants/uri";
 import Home from "./pages/home/Home";
 
-export const RoutesStack = [
-  { path: ROUTES.BASE, view: VIEW.DEFAULT, element: <Home /> },
-  { path: ROUTES.HOME, view: VIEW.HOME, element: <Home /> },
-  { path: ROUTES.PEOPLE, view: VIEW.PEOPLE, element: <Home /> },
-  { path: ROUTES.PLANETS, view: VIEW.PLANETS, element: <Home /> },
-  { path: ROUTES.STARSHIP, view: VIEW.STARSHIP, element: <Home /> },
-  { path: ROUTES.FILMS, view: VIEW.FILMS, element: <Home /> },
-  { path: ROUTES.VEHICLES, view: VIEW.VEHICLES, element: <Home /> },
-  { path: ROUTES.SPECIES, view: VIEW.SPECIES, element: <Home /> },
+const RoutesStack = [
+  { path: ROUTES.BASE, view: VIEW.DEFAULT, element: <Home />, name: VIEW.DEFAULT },
+  { path: ROUTES.HOME, view: VIEW.HOME, element: <Home />, name: VIEW.HOME },
+  { path: ROUTES.PEOPLE, view: VIEW.PEOPLE, element: <Home />, name: VIEW.PEOPLE },
+  { path: ROUTES.PLANETS, view: VIEW.PLANETS, element: <Home />, name: VIEW.PLANETS },
+  { path: ROUTES.STARSHIP, view: VIEW.STARSHIP, element: <Home />, name: VIEW.STARSHIP },
+  { path: ROUTES.FILMS, view: VIEW.FILMS, element: <Home />, name: VIEW.FILMS },
+  { path: ROUTES.VEHICLES, view: VIEW.VEHICLES, element: <Home />, name: VIEW.VEHICLES },
+  { path: ROUTES.SPECIES, view: VIEW.SPECIES, element: <Home />, name: VIEW.SPECIES },
 ];
 
 const AppRouter = () => {
@@ -27,4 +27,4 @@ const AppRouter = () => {
   );
 };
 
-export { AppRouter };
+export { AppRouter, RoutesStack };

@@ -3,6 +3,7 @@ import { INITIAL_PAGE, StateEntity } from "../constants/context";
 import { ROUTES, VIEW } from "../constants/uri";
 import { BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
 
+/* extracts page number from response */
 const getPageFromUri = (uri: string | null): number => {
     let pageNum = Number(uri?.split('page=')[1])
     if (!uri || !pageNum) {
@@ -12,10 +13,12 @@ const getPageFromUri = (uri: string | null): number => {
     }
 }
 
+/* extracts page number from path location */
 const getLocationPath = (): VIEW => {
     return window?.location.pathname.split("/")[1] as VIEW
 }
 
+/* abstraction to partially update state for pagination */
 const setUpdatePayload = (data: SwapiResponse<any>): UpdatePayload<any> => {
     return {
         currentPage: getPageFromUri(data?.next) - 1,
@@ -27,6 +30,7 @@ const setUpdatePayload = (data: SwapiResponse<any>): UpdatePayload<any> => {
     } as unknown as UpdatePayload<any>
 }
 
+/* abstraction to partially update state after response */
 const updateAfterLoad = (entity: StateEntity, payload: any, state: BaseState) => {
     return {
         ...state,
@@ -46,6 +50,7 @@ const updateAfterLoad = (entity: StateEntity, payload: any, state: BaseState) =>
     } as BaseState
 };
 
+/* abstraction to partially update state only for displayed items */
 const updateDisplayed = (entity: StateEntity, payload: any, state: BaseState) => {
     return {
         ...state,
@@ -68,7 +73,6 @@ const navigate = (route: ROUTES) => {
     return window.location.assign(route);
   };
 
-  
 export {
     getPageFromUri,
     getLocationPath,
