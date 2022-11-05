@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Grid } from "../../UI/molecules/Grid";
 import { SideMenu } from "../../UI/molecules/SideMenu";
 import { QueryContext } from "../../context/query/QueryProvider";
@@ -8,7 +8,7 @@ import { BaseActions } from "../../context/query/BaseActions";
 const Home = (): JSX.Element => {
   const { state, dispatch } = useContext(QueryContext);
   const setView = (viewName: VIEW) => {
-    BaseActions.SetView(viewName);
+    dispatch(BaseActions.SetView(viewName));
   };
   return (
     <Grid
