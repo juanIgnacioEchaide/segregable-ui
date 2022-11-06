@@ -122,6 +122,7 @@ type SwapiResponse<T> = {
 }
 
 type BaseState = {
+    [x: string]: any
     loading: boolean,
     error: boolean,
     errorMessage: string,

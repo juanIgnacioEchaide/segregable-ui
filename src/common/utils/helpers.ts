@@ -61,6 +61,11 @@ const updateDisplayed = (entity: StateEntity, payload: any, state: BaseState) =>
     } as BaseState
 }
 
+/* retrieve the relevant section of state by current view */
+const getViewState = (state: BaseState) => {
+    return state[state?.view as keyof BaseState]
+}
+
 const isMobile = (view: SIZE) => {
     return view === SIZE.MOBILE
 }
@@ -71,7 +76,7 @@ const isDesktop = (view: SIZE) => {
 
 const navigate = (route: ROUTES) => {
     return window.location.assign(route);
-  };
+};
 
 export {
     getPageFromUri,
@@ -79,6 +84,7 @@ export {
     setUpdatePayload,
     updateAfterLoad,
     updateDisplayed,
+    getViewState,
     isMobile,
     isDesktop,
     navigate,
