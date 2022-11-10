@@ -122,7 +122,6 @@ type SwapiResponse<T> = {
 }
 
 type BaseState = {
-    [x: string]: any
     loading: boolean,
     error: boolean,
     errorMessage: string,
@@ -148,7 +147,8 @@ type BaseState = {
         vehicles: Vehicle[],
         species: Specie[],
         films: Film[],
-    }
+    },
+    [x: string]: any
 }
 
 type UIState = {

@@ -1,10 +1,11 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Grid } from '../../UI/molecules/Grid'
 import { SideMenu } from '../../UI/molecules/SideMenu'
 import { QueryContext } from '../../context/query/QueryProvider'
 import { VIEW } from '../../common/constants/uri'
 import { BaseActions } from '../../context/query/BaseActions'
 import { getViewState } from '../../common/utils/helpers'
+import { ItemsList } from '../../UI/molecules/ItemsList'
 
 const Home = (): JSX.Element => {
   const { state, dispatch } = useContext(QueryContext)
@@ -37,13 +38,7 @@ const Home = (): JSX.Element => {
   return (
     <Grid
       nav={<div>swapi</div>}
-      main={
-        <div>
-          {items?.map((i) => (
-            <p key={i.title}>{i.title}</p>
-          ))}
-        </div>
-      }
+      main={<ItemsList items={items} />}
       details={<p>{title}</p>}
       side={<SideMenu setView={setView} />}
       footer={undefined}
