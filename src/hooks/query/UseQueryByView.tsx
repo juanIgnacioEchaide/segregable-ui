@@ -2,7 +2,7 @@ import { People, Planet, Starship } from "../../common";
 import { MESSAGE } from "../../common/constants";
 import { VIEW } from "../../common/constants/uri";
 import { UpdatePayload, Action } from "../../common/models/entities";
-import { BaseActions } from "../../context/query/BaseActions";
+import { QueryActions } from "../../context/query/QueryActions";
 import { queryByView } from "./QueryByView";
 
 
@@ -22,7 +22,6 @@ const UseQueryByView = () => {
   };
 
   const searchQuery = (viewScene: VIEW, stringParam: string) => {
-    console.log("llega a searchQuery");
     return queryByView[viewScene]?.searchQuery(stringParam);
   };
 
@@ -35,15 +34,15 @@ const UseQueryByView = () => {
   };
 
   const displayGenericError = () => {
-    return BaseActions.SetError(MESSAGE.GENERIC_API_ERROR);
+    return QueryActions.SetError(MESSAGE.GENERIC_API_ERROR);
   };
 
   const clearError = () => {
-    return BaseActions.ClearError();
+    return QueryActions.ClearError();
   };
 
   const setView = (view: VIEW) => {
-    return BaseActions.SetView(view);
+    return QueryActions.SetView(view);
   };
 
   return {

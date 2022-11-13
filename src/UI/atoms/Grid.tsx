@@ -40,7 +40,6 @@ const SideBar = styled.div`
   grid-area: sidebar;
   padding: 0.15rem;
 `
-
 const ContentBox = styled.div`
   display: flex;
   gap: 0.25rem;
@@ -63,7 +62,6 @@ const Footer = styled.footer`
   grid-area: footer;
   padding: 0.25rem;
 `
-
 export {
     Container, 
     NavBar, 

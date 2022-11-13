@@ -3,7 +3,7 @@ import { ActionType } from "../../common/constants/context"
 import { VIEW } from "../../common/constants/uri"
 import { Film, Specie, UpdatePayload, Vehicle } from "../../common/models/entities"
 
-const BaseActions = {
+const QueryActions = {
     SetLoading: (payload: boolean) => ({
         type: ActionType.SetLoading,
         payload
@@ -73,4 +73,4 @@ const BaseActions = {
     }),
 }
 
-export { BaseActions }
+export { QueryActions }

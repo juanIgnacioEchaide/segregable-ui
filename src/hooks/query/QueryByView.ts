@@ -34,7 +34,7 @@ import {
   Specie,
   Film,
 } from "../../common/models/entities";
-import { BaseActions } from "../../context/query/BaseActions";
+import { QueryActions } from "../../context/query/QueryActions";
 
   const queryByView: ViewQueries = {
     [VIEW.PEOPLE]: {
@@ -52,7 +52,7 @@ import { BaseActions } from "../../context/query/BaseActions";
         return searchPeople(stringParam);
       },
       updateFn: (data: UpdatePayload<People>): Action => {
-        return BaseActions.UpdatePeople(data) as Action;
+        return QueryActions.UpdatePeople(data) as Action;
       },
     },
     [VIEW.PLANETS]: {
@@ -69,7 +69,7 @@ import { BaseActions } from "../../context/query/BaseActions";
         return searchPlanets(stringParam);
       },
       updateFn: (data: UpdatePayload<Planet>): Action => {
-        return BaseActions.UpdatePlanets(data) as Action;
+        return QueryActions.UpdatePlanets(data) as Action;
       },
     },
     [VIEW.STARSHIP]: {
@@ -86,7 +86,7 @@ import { BaseActions } from "../../context/query/BaseActions";
         return searchStarship(stringParam);
       },
       updateFn: (data: UpdatePayload<Starship>): Action => {
-        return BaseActions.UpdateStarships(data) as Action;
+        return QueryActions.UpdateStarships(data) as Action;
       },
     },
     [VIEW.FILMS]: {
@@ -103,7 +103,7 @@ import { BaseActions } from "../../context/query/BaseActions";
         return searchFilms(stringParam);
       },
       updateFn: (data: UpdatePayload<Film>): Action => {
-        return BaseActions.UpdateFilms(data) as Action;
+        return QueryActions.UpdateFilms(data) as Action;
       },
     },
     [VIEW.SPECIES]: {
@@ -120,7 +120,7 @@ import { BaseActions } from "../../context/query/BaseActions";
         return searchSpecies(stringParam);
       },
       updateFn: (data: UpdatePayload<Specie>): Action => {
-        return BaseActions.UpdateSpecies(data) as Action;
+        return QueryActions.UpdateSpecies(data) as Action;
       },
     },
     [VIEW.VEHICLES]: {
@@ -137,7 +137,7 @@ import { BaseActions } from "../../context/query/BaseActions";
         return searchVehicles(stringParam);
       },
       updateFn: (data: UpdatePayload<Vehicle>): Action => {
-        return BaseActions.UpdateVehicles(data) as Action;
+        return QueryActions.UpdateVehicles(data) as Action;
       },
     },
   };

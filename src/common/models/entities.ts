@@ -151,6 +151,8 @@ type BaseState = {
     [x: string]: any
 }
 
+type AnyBusinessEntity = People | Specie | Starship | Planet | Vehicle | Film;
+
 type UIState = {
     modalOn: boolean,
     modalTitle: string,
@@ -241,6 +243,7 @@ export type {
     Vehicle,
     Film,
     Specie,
+    AnyBusinessEntity,
     SwapiResponse,
     BaseState,
     UIState,

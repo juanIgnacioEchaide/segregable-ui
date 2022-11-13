@@ -19,6 +19,7 @@ import {
 } from "../../common/models/entities";
 import { getLocationPath, setUpdatePayload } from "../../common/utils/helpers";
 import { UseQueryByView } from "../../hooks/UseQueryByView";
+import { VIEW } from "../../common/constants/uri";
 
 const QueryContext =
   createContext<ContextValue<BaseState>>(defaultContextValue);
@@ -39,7 +40,7 @@ const QueryProvider = ({ children }: any) => {
   } = UseQueryByView();
 
   const fetchDataByPage = useCallback(() => {
-    if (state?.view) {
+    if (state?.view && state?.view !== VIEW.HOME) {
       if (state?.pageParam === 0) {
         allQuery(state?.view)
           .then((data: SwapiResponse<People | Planet | Starship>) => {

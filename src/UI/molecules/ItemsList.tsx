@@ -1,10 +1,15 @@
 import React from 'react'
+import { AnyBusinessEntity } from '../../common/models/entities'
 
-const ItemsListComponent = ({ items }: any): JSX.Element => {
+type ItemsListProps = {
+  items: AnyBusinessEntity[]
+}
+
+const ItemsListComponent = ({ items }: ItemsListProps): JSX.Element => {
   if (!items?.length) {
     return <div>loading...</div>
   }
-  
+
   return (
     <div>
       <div>
