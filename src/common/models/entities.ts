@@ -128,6 +128,7 @@ type BaseState = {
     currentPage: number,
     nextPage: number,
     prevPage: number,
+    totalPages: number,
     nextUri: string,
     prevUri: string,
     view: VIEW,

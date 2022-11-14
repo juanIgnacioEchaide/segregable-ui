@@ -1,4 +1,5 @@
 import { BaseState, ContextValue, Selectable, UIState } from "../models/entities";
+
 import { SIZE } from "./media";
 import { ROUTES, VIEW } from "./uri";
 
@@ -65,6 +66,7 @@ const defaultState: BaseState = {
     currentPage: 0,
     nextPage: 0,
     prevPage: 0,
+    totalPages: 0,
     nextUri: '',
     prevUri: '',
     view: VIEW.DEFAULT,

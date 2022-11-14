@@ -12,6 +12,10 @@ const Home = (): JSX.Element => {
   const [title, setTitle] = useState<string>()
   const [items, setItems] = useState<any[]>([])
 
+  const atHomeView = () => {
+    return (state?.view === VIEW.HOME || state?.view === VIEW.DEFAULT)
+  }
+  
   const setView = (viewName: VIEW) => {
     dispatch(QueryActions.SetView(viewName))
   }
@@ -29,16 +33,10 @@ const Home = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
-  useEffect(() => {
-    if (items?.length) {
-      console.log(items)
-    }
-  }, [items])
-
   return (
     <Grid
       nav={<div>swapi</div>}
-      main={<ItemsList items={items} />}
+      main={!atHomeView() && <ItemsList items={items} />}
       details={<p>{title}</p>}
       side={<SideMenu setView={setView} />}
       footer={undefined}

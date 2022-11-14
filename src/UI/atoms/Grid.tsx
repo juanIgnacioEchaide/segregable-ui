@@ -17,9 +17,9 @@ const Container = styled.div`
     grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 0.5fr;
     grid-template-areas:
       'nav'
-      'sidebar'
-      'main'
       'content'
+      'main'
+      'sidebar'
       'footer';
   }
   color: white;

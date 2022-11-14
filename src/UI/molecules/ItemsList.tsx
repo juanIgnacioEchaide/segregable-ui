@@ -1,5 +1,7 @@
 import React from 'react'
 import { AnyBusinessEntity } from '../../common/models/entities'
+import { setKeyByType } from '../../common/utils/helpers'
+import { BaseBox } from '../atoms/Box'
 
 type ItemsListProps = {
   items: AnyBusinessEntity[]
@@ -11,13 +13,11 @@ const ItemsListComponent = ({ items }: ItemsListProps): JSX.Element => {
   }
 
   return (
-    <div>
-      <div>
-        {items?.map((i: any) => (
-          <p key={i.id}>{i.name}</p>
-        ))}
-      </div>
-    </div>
+    <BaseBox h={66} scrollY>
+      {items?.map((i: any) => (
+        <p key={setKeyByType(i)}>{i.name}</p>
+      ))}
+    </BaseBox>
   )
 }
 

@@ -1,7 +1,7 @@
 import { SIZE } from "../constants";
 import { INITIAL_PAGE, StateEntity } from "../constants/context";
 import { ROUTES, VIEW } from "../constants/uri";
-import { BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
+import { AnyBusinessEntity, BaseState, SwapiResponse, UpdatePayload } from "../models/entities";
 
 /* extracts page number from response */
 const getPageFromUri = (uri: string | null): number => {
@@ -66,6 +66,10 @@ const getViewState = (state: BaseState) => {
     return state[state?.view as keyof BaseState]
 }
 
+const setKeyByType = (item: AnyBusinessEntity)=> {
+   return ('name' in item)? item.name :item.title
+}
+
 const isMobile = (view: SIZE) => {
     return view === SIZE.MOBILE
 }
@@ -82,6 +86,7 @@ export {
     getPageFromUri,
     getLocationPath,
     setUpdatePayload,
+    setKeyByType,
     updateAfterLoad,
     updateDisplayed,
     getViewState,

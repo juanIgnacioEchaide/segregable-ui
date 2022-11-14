@@ -24,6 +24,7 @@ const BaseBox = ({
   primary,
   secondary,
   mode,
+  scrollY, 
   alignCenter,
   alignStart,
   alignEnd,
@@ -118,6 +119,7 @@ const BaseBox = ({
         marginLeft: ml ? px(ml) : none,
         marginRight: mr ? px(mr) : none,
         fontSize: px(fs),
+        overflowY: "scroll"
       }}
     >
       {children}

@@ -39,6 +39,7 @@ type BaseBoxProps = {
   justifySpaceBetween?: boolean;
   justifySpaceAround?: boolean;
   justifySpaceEvenly?: boolean;
+  scrollY?: boolean;
 }
 
 interface MapItemsProps<T> extends BaseBoxProps {
