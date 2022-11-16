@@ -48,7 +48,6 @@ import { QueryActions } from "../../context/query/QueryActions";
         return getPeopleById(id);
       },
       searchQuery: (stringParam: string) => {
-        console.log("llega a queryByView");
         return searchPeople(stringParam);
       },
       updateFn: (data: UpdatePayload<People>): Action => {

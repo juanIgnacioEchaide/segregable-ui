@@ -1,14 +1,14 @@
 import { People, Planet, Starship } from "../../common";
 import { MESSAGE } from "../../common/constants";
 import { VIEW } from "../../common/constants/uri";
-import { UpdatePayload, Action } from "../../common/models/entities";
+import { UpdatePayload, Action, AnyBusinessEntity } from "../../common/models/entities";
 import { QueryActions } from "../../context/query/QueryActions";
 import { queryByView } from "./QueryByView";
 
 
 const UseQueryByView = () => {
 
-
+  // API CALLS
   const allQuery = (viewScene: VIEW) => {
     return queryByView[viewScene]?.allQuery();
   };
@@ -28,9 +28,13 @@ const UseQueryByView = () => {
   // TO BE DISPATCHED
   const updateDispatch = (
     viewScene: VIEW,
-    data: UpdatePayload<People | Planet | Starship>
+    data: UpdatePayload<AnyBusinessEntity>
   ) => {
     return queryByView[viewScene]?.updateFn(data) as Action;
+  };
+
+  const setView = (view: VIEW) => {
+    return QueryActions.SetView(view);
   };
 
   const displayGenericError = () => {
@@ -39,10 +43,6 @@ const UseQueryByView = () => {
 
   const clearError = () => {
     return QueryActions.ClearError();
-  };
-
-  const setView = (view: VIEW) => {
-    return QueryActions.SetView(view);
   };
 
   return {

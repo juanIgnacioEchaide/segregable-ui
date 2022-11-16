@@ -157,7 +157,6 @@ const UseQueryByView = () => {
   };
 
   const searchQuery = (viewScene: VIEW, stringParam: string) => {
-    console.log("llega a searchQuery");
     return queryByView[viewScene]?.searchQuery(stringParam);
   };
 

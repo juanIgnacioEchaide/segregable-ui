@@ -31,7 +31,13 @@ const setUpdatePayload = (data: SwapiResponse<any>): UpdatePayload<any> => {
 }
 
 /* abstraction to partially update state after response */
-const updateAfterLoad = (entity: StateEntity, payload: any, state: BaseState) => {
+const updateAfterLoad = (
+    entity: StateEntity, 
+    payload: any, 
+    state: BaseState, 
+    currentPage?: number, 
+    totalPages?:number
+    ) => {
     return {
         ...state,
         [entity]: payload.results,
@@ -51,7 +57,12 @@ const updateAfterLoad = (entity: StateEntity, payload: any, state: BaseState) =>
 };
 
 /* abstraction to partially update state only for displayed items */
-const updateDisplayed = (entity: StateEntity, payload: any, state: BaseState) => {
+const updateDisplayed = (
+    entity: StateEntity, 
+    payload: any, 
+    state: BaseState, 
+    currentPage?: number, 
+    totalPages?:number) => {
     return {
         ...state,
         displayed: {

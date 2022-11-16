@@ -6,16 +6,26 @@ import { VIEW } from '../../common/constants/uri'
 import { QueryActions } from '../../context/query/QueryActions'
 import { getViewState } from '../../common/utils/helpers'
 import { ItemsList } from '../../UI/molecules/ItemsList'
+import { AnyBusinessEntity } from '../../common/models/entities'
 
 const Home = (): JSX.Element => {
   const { state, dispatch } = useContext(QueryContext)
   const [title, setTitle] = useState<string>()
-  const [items, setItems] = useState<any[]>([])
+  const [items, setItems] = useState<AnyBusinessEntity[]>([])
+  const [detailsData, setDetailsData] = useState<{
+    title: string
+    currentPage: number
+    totalPages: number
+  }>({
+    title: '',
+    currentPage: 0,
+    totalPages: 0,
+  })
 
   const atHomeView = () => {
-    return (state?.view === VIEW.HOME || state?.view === VIEW.DEFAULT)
+    return state?.view === VIEW.HOME || state?.view === VIEW.DEFAULT
   }
-  
+
   const setView = (viewName: VIEW) => {
     dispatch(QueryActions.SetView(viewName))
   }
@@ -33,11 +43,25 @@ const Home = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
+  useEffect(() => {
+    if (state?.currentPage) {
+      setDetailsData({
+        ...detailsData,
+        currentPage: state?.currentPage,
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state])
+
   return (
     <Grid
       nav={<div>swapi</div>}
       main={!atHomeView() && <ItemsList items={items} />}
-      details={<p>{title}</p>}
+      details={
+        <p>
+          {title} Page: {detailsData?.currentPage}
+        </p>
+      }
       side={<SideMenu setView={setView} />}
       footer={undefined}
     />
