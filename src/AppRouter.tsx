@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./common/constants";
 import { VIEW } from "./common/constants/uri";
-import Home from "./pages/home/Home";
+import Page from "./pages/page";
 
 const RoutesStack = [
   { path: ROUTES.BASE, view: VIEW.DEFAULT, name: VIEW.DEFAULT },
@@ -20,7 +20,7 @@ const AppRouter = () => {
     <Router>
       <Routes>
         {RoutesStack.map((route) => (
-          <Route path={route.path} element={<Home/>} key={route.path} />
+          <Route path={route.path} element={<Page/>} key={route.path} />
         ))}
       </Routes>
     </Router>

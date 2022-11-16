@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
-import { Grid } from '../../UI/molecules/Grid'
-import { SideMenu } from '../../UI/molecules/SideMenu'
-import { QueryContext } from '../../context/query/QueryProvider'
-import { VIEW } from '../../common/constants/uri'
-import { QueryActions } from '../../context/query/QueryActions'
-import { getViewState } from '../../common/utils/helpers'
-import { ItemsList } from '../../UI/molecules/ItemsList'
-import { AnyBusinessEntity } from '../../common/models/entities'
+import { Grid } from '../UI/molecules/Grid'
+import { SideMenu } from '../UI/molecules/SideMenu'
+import { QueryContext } from '../context/query/QueryProvider'
+import { VIEW } from '../common/constants/uri'
+import { QueryActions } from '../context/query/QueryActions'
+import { getViewState } from '../common/utils/helpers'
+import { ItemsList } from '../UI/molecules/ItemsList'
+import { AnyBusinessEntity } from '../common/models/entities'
 
 const Home = (): JSX.Element => {
   const { state, dispatch } = useContext(QueryContext)
@@ -54,17 +54,7 @@ const Home = (): JSX.Element => {
   }, [state])
 
   return (
-    <Grid
-      nav={<div>swapi</div>}
-      main={!atHomeView() && <ItemsList items={items} />}
-      details={
-        <p>
-          {title} Page: {detailsData?.currentPage}
-        </p>
-      }
-      side={<SideMenu setView={setView} />}
-      footer={undefined}
-    />
+  <div>template</div>
   )
 }
 
