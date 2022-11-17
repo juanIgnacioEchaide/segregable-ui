@@ -1,22 +1,61 @@
 import React from 'react'
-import { Grid, Paper } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
 
-const Layout = (): JSX.Element => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  nav: {
+    height: '9vh',
+    backgroundColor: 'grey',
+    textAlign: 'center',
+  },
+  main: {
+    backgroundColor: 'green',
+    textAlign: 'center',
+    height: '86vh',
+    color: theme.palette.text.secondary,
+  },
+  sideMenu: {
+    backgroundColor: 'red',
+    height: '86vh',
+  },
+  footer: {
+    backgroundColor: 'yellow',
+    height: '5vh',
+  },
+}))
+
+type LayoutProps = {
+  nav: any
+  sideMenu: any
+  main: any
+  footer: any
+}
+
+const Layout = ({ nav, sideMenu, main, footer }: LayoutProps) => {
+  const classes = useStyles()
+
   return (
-    <Grid container spacing={2} justify="center">
-      <Grid item xs={12} sm={8}></Grid>
-      <Grid item xs={12} sm={8}>
-        <Paper style={{ height: '100vh', background: 'lightgrey' }} />
-      </Grid>
-      <Grid item container direction="column" xs={12} sm={4} spacing={2}>
-        <Grid item>
-          <Paper style={{ height: '49vh', background: 'orange' }} />
+    <div className={classes.root}>
+      <Grid container spacing={0}>
+        <Grid item xs={12}>
+          <Box className={classes.nav}>{nav}</Box>
         </Grid>
-        <Grid item>
-          <Paper style={{ height: '49vh', background: 'green' }} />
+        <Grid item xs={3}>
+          <Box className={classes.sideMenu}>{sideMenu}</Box>
+        </Grid>
+        <Grid item xs={9}>
+          <Box className={classes.main}>{main}</Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box className={classes.footer}>{footer}</Box>
         </Grid>
       </Grid>
-    </Grid>
+    </div>
   )
 }
+
 export { Layout }

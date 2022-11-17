@@ -5,6 +5,7 @@ import { QueryActions } from '../../context/query/QueryActions'
 import { getViewState } from '../../common/utils/helpers'
 import { ItemsList } from '../../UI/molecules/ItemsList'
 import { AnyBusinessEntity } from '../../common/models/entities'
+import { Layout } from '../../UI/atoms/Grid'
 
 const Page = (): JSX.Element => {
   const { state, dispatch } = useContext(QueryContext)
@@ -51,7 +52,7 @@ const Page = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
-  return (<div>Page</div>)
+  return <Layout />
 }
 
 export default Page
