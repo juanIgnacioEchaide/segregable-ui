@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
+import { LayoutProps } from '../../common/models/props'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,13 +28,6 @@ const useStyles = makeStyles((theme) => ({
     height: '5vh',
   },
 }))
-
-type LayoutProps = {
-  nav: any
-  sideMenu: any
-  main: any
-  footer: any
-}
 
 const Layout = ({ nav, sideMenu, main, footer }: LayoutProps) => {
   const classes = useStyles()

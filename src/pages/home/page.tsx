@@ -52,7 +52,14 @@ const Page = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
-  return <Layout />
+  return (
+    <Layout
+      nav={undefined}
+      sideMenu={undefined}
+      main={undefined}
+      footer={undefined}
+    />
+  )
 }
 
 export default Page

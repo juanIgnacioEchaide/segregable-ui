@@ -67,10 +67,19 @@ type GridTemplateProps = {
   footer: any,  
 };
 
+type LayoutProps = {
+  nav: any
+  sideMenu: any
+  main: any
+  footer: any
+}
+
+
 export type { 
   BaseBoxProps, 
   MapItemsProps, 
   DrawerMenuProps, 
   DrawerLinksProps, 
-  GridTemplateProps 
+  GridTemplateProps,
+  LayoutProps
 }
