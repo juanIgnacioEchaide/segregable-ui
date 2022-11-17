@@ -1,6 +1,4 @@
 import { useContext, useEffect, useState } from 'react'
-import { Grid } from '../../UI/molecules/Grid'
-import { SideMenu } from '../../UI/molecules/SideMenu'
 import { QueryContext } from '../../context/query/QueryProvider'
 import { VIEW } from '../../common/constants/uri'
 import { QueryActions } from '../../context/query/QueryActions'
@@ -8,7 +6,7 @@ import { getViewState } from '../../common/utils/helpers'
 import { ItemsList } from '../../UI/molecules/ItemsList'
 import { AnyBusinessEntity } from '../../common/models/entities'
 
-const Home = (): JSX.Element => {
+const Page = (): JSX.Element => {
   const { state, dispatch } = useContext(QueryContext)
   const [title, setTitle] = useState<string>()
   const [items, setItems] = useState<AnyBusinessEntity[]>([])
@@ -53,19 +51,7 @@ const Home = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
-  return (
-    <Grid
-      nav={<div>swapi</div>}
-      main={!atHomeView() && <ItemsList items={items} />}
-      details={
-        <p>
-          {title} Page: {detailsData?.currentPage}
-        </p>
-      }
-      side={<SideMenu setView={setView} />}
-      footer={undefined}
-    />
-  )
+  return (<div>Page</div>)
 }
 
-export default Home
+export default Page
