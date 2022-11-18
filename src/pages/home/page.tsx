@@ -6,6 +6,7 @@ import { getViewState } from '../../common/utils/helpers'
 import { ItemsList } from '../../UI/molecules/ItemsList'
 import { AnyBusinessEntity } from '../../common/models/entities'
 import { Layout } from '../../UI/atoms/Grid'
+import { SideMenu } from '../../UI/molecules/sideMenu'
 
 const Page = (): JSX.Element => {
   const { state, dispatch } = useContext(QueryContext)
@@ -54,9 +55,9 @@ const Page = (): JSX.Element => {
 
   return (
     <Layout
-      nav={undefined}
-      sideMenu={undefined}
-      main={undefined}
+      nav={'Swapi'}
+      sideMenu={<SideMenu setView={setView} />}
+      main={!atHomeView() && <ItemsList items={items} />}
       footer={undefined}
     />
   )

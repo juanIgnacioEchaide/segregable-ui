@@ -1,6 +1,6 @@
-import React,{ useCallback } from "react";
+import React, { useCallback } from 'react'
 
-import { BaseBoxProps } from "../../common/models/props";
+import { BaseBoxProps } from '../../common/models/props'
 
 const BaseBox = ({
   children,
@@ -24,7 +24,7 @@ const BaseBox = ({
   primary,
   secondary,
   mode,
-  scrollY, 
+  scrollY,
   alignCenter,
   alignStart,
   alignEnd,
@@ -38,51 +38,51 @@ const BaseBox = ({
   justifySpaceAround,
   justifySpaceEvenly,
 }: BaseBoxProps) => {
-  const none = "none";
+  const none = 'none'
 
   const setFlexDir = (col: boolean | undefined, row: boolean | undefined) => {
     if (col && row) {
-      return "column";
+      return 'column'
     } else {
       if (row) {
-        return "row";
+        return 'row'
       }
     }
-    return "column";
-  };
+    return 'column'
+  }
 
   const setAlignItems = useCallback(() => {
     const positions = [
-      "center",
-      "flex-start",
-      "flex-end",
-      " baseline",
-      "stretch",
-    ];
-    if (alignCenter) return positions[0];
-    if (alignStart) return positions[1];
-    if (alignEnd) return positions[2];
-    if (alignBaseLine) return positions[3];
-    if (alignStrecht) return positions[4];
-    return positions[0];
-  }, [alignBaseLine, alignCenter, alignEnd, alignStart, alignStrecht]);
+      'center',
+      'flex-start',
+      'flex-end',
+      ' baseline',
+      'stretch',
+    ]
+    if (alignCenter) return positions[0]
+    if (alignStart) return positions[1]
+    if (alignEnd) return positions[2]
+    if (alignBaseLine) return positions[3]
+    if (alignStrecht) return positions[4]
+    return positions[0]
+  }, [alignBaseLine, alignCenter, alignEnd, alignStart, alignStrecht])
 
   const setJustifyContent = useCallback(() => {
     const justifications = [
-      "flex-start",
-      "flex-end",
-      "center",
-      "space-between",
-      "space-around",
-      "space-evenly",
-    ];
-    if (justifyStart) return justifications[0];
-    if (justifyend) return justifications[1];
-    if (justifycenter) return justifications[2];
-    if (justifySpaceBetween) return justifications[3];
-    if (justifySpaceAround) return justifications[4];
-    if (justifySpaceEvenly) return justifications[5];
-    return justifications[0];
+      'flex-start',
+      'flex-end',
+      'center',
+      'space-between',
+      'space-around',
+      'space-evenly',
+    ]
+    if (justifyStart) return justifications[0]
+    if (justifyend) return justifications[1]
+    if (justifycenter) return justifications[2]
+    if (justifySpaceBetween) return justifications[3]
+    if (justifySpaceAround) return justifications[4]
+    if (justifySpaceEvenly) return justifications[5]
+    return justifications[0]
   }, [
     justifySpaceAround,
     justifySpaceBetween,
@@ -90,16 +90,16 @@ const BaseBox = ({
     justifyStart,
     justifycenter,
     justifyend,
-  ]);
+  ])
 
   const px = (val: any) => {
-    return `${val?.toString()}px`;
-  };
+    return `${val?.toString()}px`
+  }
 
   return (
     <div
       style={{
-        display: "flex",
+        display: 'flex',
         width: `${w?.toString()}vw`,
         height: `${h?.toString()}vh`,
         flexDirection: setFlexDir(column, row),
@@ -107,7 +107,7 @@ const BaseBox = ({
         justifyContent: setJustifyContent(),
         alignItems: setAlignItems(),
         background: bg ? bg : none,
-        borderRadius: rounded ? "7px" : none,
+        borderRadius: rounded ? '7px' : none,
         padding: p ? px(p) : none,
         paddingTop: pt ? px(pt) : none,
         paddingBottom: pb ? px(pb) : none,
@@ -119,12 +119,12 @@ const BaseBox = ({
         marginLeft: ml ? px(ml) : none,
         marginRight: mr ? px(mr) : none,
         fontSize: px(fs),
-        overflowY: "scroll"
+        overflowY: scrollY ? 'scroll' : undefined,
       }}
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
-export { BaseBox };
+export { BaseBox }

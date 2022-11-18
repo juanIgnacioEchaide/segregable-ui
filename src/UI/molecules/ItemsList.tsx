@@ -13,7 +13,7 @@ const ItemsListComponent = ({ items }: ItemsListProps): JSX.Element => {
   }
 
   return (
-    <BaseBox h={66} scrollY>
+    <BaseBox h={85} scrollY>
       {items?.map((i: any) => (
         <p key={setKeyByType(i)}>{i.name}</p>
       ))}
