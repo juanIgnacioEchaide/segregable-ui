@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import { LayoutProps } from '../../common/models/props'
+import { Color } from '../../common/constants/styles'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,21 +11,21 @@ const useStyles = makeStyles((theme) => ({
   },
   nav: {
     height: '9vh',
-    backgroundColor: 'grey',
+    backgroundColor: Color.primary,
     textAlign: 'center',
   },
   main: {
-    backgroundColor: 'green',
+    backgroundColor: Color.secondary,
     textAlign: 'center',
     height: '86vh',
     color: theme.palette.text.secondary,
   },
   sideMenu: {
-    backgroundColor: 'red',
+    backgroundColor: Color.highPrimary,
     height: '86vh',
   },
   footer: {
-    backgroundColor: 'yellow',
+    backgroundColor:  Color.highSecondary,
     height: '5vh',
   },
 }))

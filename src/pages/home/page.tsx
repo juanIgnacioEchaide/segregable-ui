@@ -58,7 +58,7 @@ const Page = (): JSX.Element => {
       nav={'Swapi'}
       sideMenu={<SideMenu setView={setView} />}
       main={!atHomeView() && <ItemsList items={items} />}
-      footer={undefined}
+      footer={'swapi example (c)'}
     />
   )
 }
