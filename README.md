@@ -4,7 +4,7 @@
  
 ### The reusable monolith represents this architecture:
 
-![example-graphics](https://user-images.githubusercontent.com/43832189/203218116-860d2bdb-6e22-4a44-b444-44d3147619b7.jpg)
+![example-graphics-small2](https://user-images.githubusercontent.com/43832189/203219562-79acf667-d3ba-4ef8-af24-b2624354d3fd.jpg)
 
 run:
 
