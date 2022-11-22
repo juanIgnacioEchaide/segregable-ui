@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Color } from '../../common/constants/styles'
 
 const Container = styled.div`
   display: grid;
@@ -22,21 +23,21 @@ const Container = styled.div`
       'sidebar'
       'footer';
   }
-  color: white;
+  color: ${Color.highSecondary};
 `
 const NavBar = styled.nav`
-  background: #3a3a55;
+  background: ${Color.primary};
   grid-area: nav;
   padding: 0.25rem;
 `
 const Main = styled.main`
-  background: #1f2128;
-  color: white;
+  background:  ${Color.secondary};
+  color: ${Color.highSecondary};
   grid-area: main;
   padding: 0.25rem;
 `
 const SideBar = styled.div`
-  background: #9aaab7;
+  background:  ${Color.highPrimary};
   grid-area: sidebar;
   padding: 0.15rem;
 `
@@ -52,13 +53,13 @@ const ContentBox = styled.div`
   }
 `
 const Details = styled.div`
-  background: #a6b8b9;
+  background:  ${Color.highSecondary};
   padding: 0.25rem;
   width: 100%;
   height: 100%;
 `
 const Footer = styled.footer`
-  background: #ff9637;
+  background:  ${Color.highSecondary};
   grid-area: footer;
   padding: 0.25rem;
 `
