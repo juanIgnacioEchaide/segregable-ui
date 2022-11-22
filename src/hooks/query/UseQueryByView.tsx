@@ -1,4 +1,3 @@
-import { People, Planet, Starship } from "../../common";
 import { MESSAGE } from "../../common/constants";
 import { VIEW } from "../../common/constants/uri";
 import { UpdatePayload, Action, AnyBusinessEntity } from "../../common/models/entities";
