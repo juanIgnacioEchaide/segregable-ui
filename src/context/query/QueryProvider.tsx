@@ -18,7 +18,7 @@ import {
   SwapiResponse,
 } from "../../common/models/entities";
 import { getLocationPath, setUpdatePayload } from "../../common/utils/helpers";
-import { UseQueryByView } from "../../hooks/UseQueryByView";
+import { UseQueryByView } from "../../hooks/query/UseQueryByView";
 import { VIEW } from "../../common/constants/uri";
 
 const QueryContext =
